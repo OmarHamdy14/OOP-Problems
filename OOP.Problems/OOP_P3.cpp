@@ -7,23 +7,6 @@ Write two classes where one accepts a group of the other as input. Those input o
 #include <string>
 #include <vector>
 using namespace std;
-
-class Department {
-public:
-	string Name;
-	vector<Student> students;
-	Department(string N, vector<Student> st) {
-		Name = N;
-		students = st;
-	}
-	void DisplayAllStudentsInfo() {
-		for (int i = 0; i < students.size(); i++) {
-			students[i].GetName();
-			students[i].GetAge();
-			students[i].GetLevel();
-		}
-	}
-};
 class Student {
 public:
 	string Name;
@@ -40,6 +23,32 @@ public:
 		cout << level << endl;
 	}
 };
-int main() {
+class Department {
+public:
+	string Name;
+	vector<Student> students;
+	Department(string N, vector<Student>& st) {
+		Name = N;
+		students = st;
+	}
+	void DisplayAllStudentsInfo() {
+		for (auto& student : students) {
+			student.GetName();
+			student.GetAge();
+			student.GetLevel();
 
+		}
+	}
+};
+/*
+int main() {
+	vector<Student> students = {
+		Student("omar",20,4),
+		Student("ahmed",21,5),
+		Student("amr",19,1)
+	};
+	string s = "CS";
+	Department dept(s, students);
+	dept.DisplayAllStudentsInfo();
 }
+*/

@@ -40,6 +40,3 @@ class Derived3 : Base {
 		cout << "I'm Derived 3, my score is " << Score << endl;
 	}
 };
-int main() {
-
-}

@@ -8,21 +8,6 @@ and the main class should use that method.
 #include <string>
 using namespace std;
 
-class CI_Faculty {
-public:
-	CS_Department CS_DEP;
-	IT_Department IT_DEP;
-	void DisplayInfoAboutCSDep() {
-		CS_DEP.GetName();
-		CS_DEP.GetStudentsNum();
-		CS_DEP.GetStaffNum();
-	}
-	void DisplayInfoAboutITDep() {
-		IT_DEP.GetName();
-		IT_DEP.GetStudentsNum();
-		IT_DEP.GetStaffNum();
-	}
-};
 class CS_Department {
 public:
 	string Name;
@@ -61,5 +46,20 @@ public:
 	}
 	void GetStaffNum() {
 		cout << Staff_Num << "/n";
+	}
+};
+class CI_Faculty {
+public:
+	CS_Department CS_DEP;
+	IT_Department IT_DEP;
+	void DisplayInfoAboutCSDep() {
+		CS_DEP.GetName();
+		CS_DEP.GetStudentsNum();
+		CS_DEP.GetStaffNum();
+	}
+	void DisplayInfoAboutITDep() {
+		IT_DEP.GetName();
+		IT_DEP.GetStudentsNum();
+		IT_DEP.GetStaffNum();
 	}
 };

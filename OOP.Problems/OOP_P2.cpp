@@ -6,6 +6,7 @@ and the main class should use that method.
 #include "OOP_P2.h"
 #include <iostream>
 #include <string>
+#include <memory>
 using namespace std;
 
 class CS_Department {

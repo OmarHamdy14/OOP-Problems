@@ -6,6 +6,7 @@ each with different outputs for a shared method.
 #include "OOP_P1.h"
 #include <iostream>
 #include <string>
+#include <memory>
 using namespace std;
 
 class Base {

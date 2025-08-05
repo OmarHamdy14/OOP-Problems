@@ -6,6 +6,7 @@ Write two classes where one accepts a group of the other as input. Those input o
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 using namespace std;
 class Student {
 public:

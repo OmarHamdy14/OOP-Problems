@@ -27,21 +27,21 @@ public:
 	Device(string n) : Name(n) {}
 	virtual void InfoAboutDev() = 0;
 };
-class Printer : Device {
+class Printer : public Device {
 public:
 	Printer(string n) : Device(n) {}
 	void InfoAboutDev() {
 		cout << "Device Name: " << Name << endl;
 	}
 };
-class TV : Device {
+class TV : public Device {
 public:
 	TV(string n) : Device(n) {}
 	void InfoAboutDev() {
 		cout << "Device Name: " << Name << endl;
 	}
 };
-class PC : Device {
+class PC : public Device {
 public:
 	PC(string n) : Device(n) {}
 	void InfoAboutDev() {

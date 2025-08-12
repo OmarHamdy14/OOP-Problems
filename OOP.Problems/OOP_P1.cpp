@@ -17,7 +17,7 @@ public:
 	}
 	virtual void display() = 0;
 };
-class Derived1 : Base {
+class Derived1 : public Base {
 	Derived1(int s) : Base(s) {
 
 	}
@@ -25,7 +25,7 @@ class Derived1 : Base {
 		cout << "I'm Derived 1, my score is " << Score << endl;
 	}
 };
-class Derived2 : Base { 
+class Derived2 : public Base {
 	Derived2(int s) : Base(s) {
 
 	}
@@ -33,7 +33,7 @@ class Derived2 : Base {
 		cout << "I'm Derived 3, my score is " << Score << endl;
 	}
 };
-class Derived3 : Base {
+class Derived3 : public Base {
 	Derived3(int s) : Base(s) {
 
 	}

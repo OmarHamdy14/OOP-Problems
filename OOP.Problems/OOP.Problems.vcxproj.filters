@@ -51,6 +51,9 @@
     <ClCompile Include="OOP_P11.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OOP_P12.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OOP_P1.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OOP_P11.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OOP_P12.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

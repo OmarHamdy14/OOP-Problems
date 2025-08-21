@@ -133,6 +133,7 @@
     <ClCompile Include="OOP_P11.cpp" />
     <ClCompile Include="OOP_P12.cpp" />
     <ClCompile Include="OOP_P13.cpp" />
+    <ClCompile Include="OOP_P14.cpp" />
     <ClCompile Include="OOP_P2.cpp" />
     <ClCompile Include="OOP_P3.cpp" />
     <ClCompile Include="OOP_P4.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="OOP_P11.h" />
     <ClInclude Include="OOP_P12.h" />
     <ClInclude Include="OOP_P13.h" />
+    <ClInclude Include="OOP_P14.h" />
     <ClInclude Include="OOP_P2.h" />
     <ClInclude Include="OOP_P3.h" />
     <ClInclude Include="OOP_P4.h" />

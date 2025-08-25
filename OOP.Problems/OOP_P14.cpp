@@ -23,31 +23,41 @@ public:
 class Seller {
 public:
 	string Name;
-	vector<Offer> Offers;
+	vector<unique_ptr<Offer>> Offers;
 	Seller(string& N) : Name(N) {}
 	void CreateOffer(string& N, double P) {
-		Offers.push_back(Offer(N, P));
+		Offers.push_back(make_unique<Offer>(N, P));
 	}
 	void DisplayAllOffers() {
 		cout << "Seller Name: " << Name << endl;
 		for (auto& offer : Offers) {
-			offer.DisplayInfo();
+			offer->DisplayInfo();
 		}
 	}
 };
 class Buyer {
 public:
 	string Name;
+	vector<unique_ptr<Offer>> Purchases;
 	Buyer(string& N) : Name(N) {}
-
 };
 class Transaction {
 public:
 	Seller seller;
 	Buyer buyer;
 	Offer offer;
-	Transaction(Seller s,Buyer b,Offer o) : seller(s),buyer(b),offer(o) {}
+	void CreateTransaction(Seller& seller, Buyer& buyer, unique_ptr<Offer>& offer) {
+		cout << "Seller Name: " << seller.Name << endl;
+		cout << "Offer Details: ";
+		offer->DisplayInfo();
+		cout << "Buyer Name: " << buyer.Name << endl;
+	}
 };
 class Marketplace {
-	vector<Transaction> Transactions;
+public:
+	vector<unique_ptr<Transaction>> Transactions;
+	void AddTransaction(unique_ptr<Transaction> tra) {
+		Transactions.push_back(move(tra));
+	}
+	
 };

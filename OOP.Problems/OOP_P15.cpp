@@ -69,7 +69,22 @@ public:
 	string Name;
 	vector<Route> routes;
 	Traveler(string n) : Name(n) {}
-	void AddRoute(Route rou) {
+	void AddRoute(Route& rou) {
 		routes.push_back(rou);
 	}
 };
+class SystemManager {
+public:
+	void CreateRoute(Traveler& trav,Route& rou) {
+		trav.AddRoute(rou);
+	}
+	void AddBusSegmentToRoute(string n,double p, Route& rou) {
+		rou.AddSegment(make_unique<Segment>(n,p));
+	}
+	void AddEventToSegment(shared_ptr<Event> eve, unique_ptr<Segment> seg) {
+		seg->AddEvent(eve);
+	}
+};
+int main() {
+
+}

@@ -53,6 +53,25 @@ public:
 		cout << "Buyer Name: " << buyer.Name << endl;
 	}
 };
+
+class Transaction2 {
+private:
+	Buyer buyer;
+	Seller* seller;
+	Offer offer;
+
+public:
+	Transaction(const Buyer& b, Seller* s, const Offer& o)
+		: buyer(b), seller(s), offer(o) {}
+
+	void Process() {
+		cout << "Transaction: " << buyer.GetName()
+			<< " bought " << offer.GetName()
+			<< " from " << seller->GetName()
+			<< " for $" << offer.GetPrice() << endl;
+	}
+};
+
 class Marketplace {
 public:
 	vector<unique_ptr<Transaction>> Transactions;

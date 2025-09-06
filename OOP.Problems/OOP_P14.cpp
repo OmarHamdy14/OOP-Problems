@@ -35,6 +35,43 @@ public:
 		}
 	}
 };
+class Seller2 {
+private:
+	string Name;
+	vector<Offer> Offers;
+
+public:
+	Seller2(const string& n) : Name(n) {}
+
+	string GetName() const { return Name; }
+
+	void CreateOffer(const string& n, double p) {
+		Offers.emplace_back(n, p);
+	}
+
+	void RemoveOffer(size_t index) {
+		if (index < Offers.size()) {
+			Offers.erase(Offers.begin() + index);
+		}
+		else {
+			cout << "Invalid offer index!\n";
+		}
+	}
+
+	const vector<Offer>& GetOffers() const { return Offers; }
+
+	void DisplayAllOffers() const {
+		cout << "Seller: " << Name << endl;
+		if (Offers.empty()) {
+			cout << "  No offers available.\n";
+			return;
+		}
+		for (size_t i = 0; i < Offers.size(); ++i) {
+			cout << "[" << i << "] ";
+			Offers[i].DisplayInfo();
+		}
+	}
+};
 class Buyer {
 public:
 	string Name;

@@ -11,6 +11,74 @@ using namespace std;
 Design a transportation network where travelers can plan routes, switch modes, and encounter events (e.g., delay, reroute). 
 Each segment should have unique behaviors and properties, and the system must manage transitions seamlessly.
 */
+
+class Segment {
+protected:
+	string from_, to_;
+	int plannedMinutes_;
+	int extraDelay_{ 0 }; // applied by events
+
+public:
+	Segment(string from, string to, int plannedMinutes)
+		: from_(move(from)), to_(move(to)), plannedMinutes_(plannedMinutes) {}
+	virtual ~Segment() = default;
+
+	virtual string type() const = 0;
+	virtual int run() {
+		// Default: planned + any event-based delays
+		return plannedMinutes_ + extraDelay_;
+	}
+	virtual void applyDelay(int minutes) { extraDelay_ += minutes; }
+
+	const string& from() const { return from_; }
+	const string& to()   const { return to_; }
+};
+
+class BusSegment : public Segment {
+public:
+	// plannedMinutes includes timetable + nominal traffic
+	BusSegment(string from, string to, int plannedMinutes)
+		: Segment(move(from), move(to), plannedMinutes) {}
+	string type() const override { return "Bus"; }
+	int run() override {
+		// Bus could have a small handling overhead (boarding, stops)
+		return Segment::run() + 5;
+	}
+};
+
+class TrainSegment : public Segment {
+public:
+	TrainSegment(string from, string to, int plannedMinutes)
+		: Segment(move(from), move(to), plannedMinutes) {}
+	string type() const override { return "Train"; }
+	int run() override {
+		// Trains are efficient: small overhead (platform transition)
+		return Segment::run() + 2;
+	}
+};
+
+class FlightSegment : public Segment {
+public:
+	FlightSegment(string from, string to, int plannedMinutes)
+		: Segment(move(from), move(to), plannedMinutes) {}
+	string type() const override { return "Flight"; }
+	int run() override {
+		// Flights add check-in + security/boarding overhead
+		return Segment::run() + 60; // simplified fixed overhead
+	}
+};
+
+class WalkSegment : public Segment {
+public:
+	WalkSegment(string from, string to, int plannedMinutes)
+		: Segment(move(from), move(to), plannedMinutes) {}
+	string type() const override { return "Walk"; }
+	int run() override {
+		// Walking has no extra overhead
+		return Segment::run();
+	}
+};
+
 class Event {
 public:
 	string Name;

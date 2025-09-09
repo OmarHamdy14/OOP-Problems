@@ -156,3 +156,77 @@ public:
 int main() {
 
 }
+
+
+
+
+class RouteManager {
+public:
+	struct Result {
+		int totalMinutes{ 0 };
+		vector<string> log;
+	};
+
+	Result travel(Traveler& t, Route& route, vector<shared_ptr<Event>> events) {
+		Result res;
+		res.log.push_back("Traveler " + t.name() + " begins journey.");
+
+		// We'll iterate with index i; since reroute/cancel can change route,
+		// we re-check events each iteration with current i.
+		size_t i = 0;
+		while (i < route.size()) {
+			// Handle any events targeting this index (there might be multiple)
+			// We consume events as we apply them.
+			bool modified = true;
+			while (modified) {
+				modified = false;
+				for (auto it = events.begin(); it != events.end(); ) {
+					if ((*it)->segmentIndex == i) {
+						auto& e = *it;
+						if (auto* d = dynamic_cast<DelayEvent*>(e.get())) {
+							route[i]->applyDelay(d->minutes);
+							res.log.push_back("Event@seg " + to_string(i) + " [Delay +" + to_string(d->minutes) + " min] on " + route[i]->type());
+							it = events.erase(it);
+							modified = true;
+							continue;
+						}
+						if (auto* r = dynamic_cast<RerouteEvent*>(e.get())) {
+							string oldType = route[i]->type();
+							route.replaceWith(i, r->replacement);
+							res.log.push_back("Event@seg " + to_string(i) + " [Reroute] replaced " + oldType + " with "
+								+ to_string(r->replacement.size()) + " segment(s).");
+							it = events.erase(it);
+							modified = true;
+							continue; // re-check same index after replacement
+						}
+						if (dynamic_cast<CancelEvent*>(e.get())) {
+							string oldType = route[i]->type();
+							route.removeAt(i);
+							res.log.push_back("Event@seg " + to_string(i) + " [Cancel] removed " + oldType + " segment.");
+							it = events.erase(it);
+							modified = true;
+							// Don't increment i; we now have a new seg at i (or none)
+							continue;
+						}
+					}
+					else {
+						++it;
+					}
+				}
+			}
+
+			if (i >= route.size()) break; // might become empty after events
+
+			auto& seg = route[i];
+			res.log.push_back("Starting seg " + to_string(i) + ": " + seg->type()
+				+ " (" + seg->from() + " -> " + seg->to() + ")");
+			int minutes = seg->run();
+			res.totalMinutes += minutes;
+			res.log.push_back("Finished seg " + to_string(i) + ": +" + to_string(minutes) + " min");
+			++i;
+		}
+
+		res.log.push_back("Journey complete. Total time: " + to_string(res.totalMinutes) + " min.");
+		return res;
+	}
+};

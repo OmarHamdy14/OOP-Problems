@@ -4,7 +4,8 @@
 #include <vector>
 #include <memory>
 using namespace std;
-/*
+
+/*  ?????????????????
 * Problem Statement
 Design a complete structure combining general and specific behavior, internal parts managed directly, and outside elements passed in. 
 Have each part interact meaningfully and demonstrate the whole system working together.
@@ -30,30 +31,32 @@ public:
 class Printer : public Device {
 public:
 	Printer(string n) : Device(n) {}
-	void InfoAboutDev() {
+	void InfoAboutDev() override {
 		cout << "Device Name: " << Name << endl;
 	}
 };
 class TV : public Device {
 public:
 	TV(string n) : Device(n) {}
-	void InfoAboutDev() {
+	void InfoAboutDev() override {
 		cout << "Device Name: " << Name << endl;
 	}
 };
 class PC : public Device {
 public:
 	PC(string n) : Device(n) {}
-	void InfoAboutDev() {
+	void InfoAboutDev() override {
 		cout << "Device Name: " << Name << endl;
 	}
 };
 class DeviceManager {
 public:
-	vector<shared_ptr<Device>>& devices;
-	InternalPart internalPart;
-	OutsideElement& outsideElement;
-	DeviceManager(vector<shared_ptr<Device>>& d, OutsideElement& OE) : devices(d),outsideElement(OE) {}
+	vector<shared_ptr<Device>> devices;
+	InternalPart& internalPart;
+	OutsideElement outsideElement;
+	/* when i write "vector<shared_ptr<Device>>& devices;" the constructor gives me this error : "DeviceManager(OutsideElement& OE)"
+	provide no intilization for : reference member "devices" */
+	DeviceManager(InternalPart& iE, OutsideElement& OE) : internalPart(iE), outsideElement(OE) {}
 	void AddDevice(shared_ptr<Device> d) {
 		devices.push_back(d);
 	}

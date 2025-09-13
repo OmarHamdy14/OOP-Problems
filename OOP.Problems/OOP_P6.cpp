@@ -3,28 +3,30 @@
 #include <string>
 #include <vector>
 #include <memory>
-
 using namespace std;
+
 /*
 * Problem Statement
-Create a setup where one class works with a collection of others, which are created outside of it. The same secondary objects should be reusable elsewhere.
+Create a setup where one class works with a collection of others, which are created outside of it. 
+The same secondary objects should be reusable elsewhere.
 */
 
 class Course {
-private:
-    string name;
 public:
-    Course(const string& name) : name(name) {}
+    string name;
+    Course(string& name) : name(name) {}
     string GetName() const { return name; }
 };
 
 class Student {
-private:
+public:
     string name;
     vector<shared_ptr<Course>> Courses;
-public:
-    Student(const string& name, const vector<shared_ptr<Course>>& courses)
-        : name(name), Courses(courses) {}
+    Student(string& name) : name(name){}
+
+    void AddCourse(shared_ptr<Course> crs) {
+        Courses.push_back(crs);
+    }
 
     void PrintCourses() const {
         std::cout << "Student: " << name << "\nCourses:\n";
@@ -33,16 +35,3 @@ public:
         }
     }
 };
-/*
-int main() {
-    auto science = make_shared<Course>("Science");
-    auto english = make_shared<Course>("English");
-    auto math = make_shared<Course>("Math");
-
-    Student s1("Omar", { science,english,math });
-    Student s2("Hamdy", { science,english,math });
-
-    s1.PrintCourses();
-
-}
-*/

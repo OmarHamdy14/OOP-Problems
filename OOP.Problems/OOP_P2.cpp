@@ -1,66 +1,70 @@
+#include "OOP_P2.h"
+#include <iostream>
+#include <string>
+#include <memory>
+#include <vector>
+using namespace std;
+
 /*
 * Problem Statement
 Make a class that includes another class as a variable. The included part should have its own method, 
 and the main class should use that method.
 */
-#include "OOP_P2.h"
-#include <iostream>
-#include <string>
-#include <memory>
-using namespace std;
-
-class CS_Department {
+class Department {
 public:
 	string Name;
 	int Students_Num;
 	int Staff_Num;
-	CS_Department(string n, int StudNum, int StafNum) {
+	Department(string n, int StudNum, int StafNum) {
 		Name = n;
 		Students_Num = StudNum;
 		Staff_Num = StafNum;
 	}
-	void GetName() {
+	virtual void GetName() = 0;
+	virtual void GetStudentsNum() = 0;
+	virtual void GetStaffNum() = 0;
+};
+class CS_Department : public Department {
+public:
+	CS_Department(string n, int StudNum, int StafNum) : Department(n, StudNum, StafNum) {}
+	void GetName() override {
 		cout << Name << "/n";
 	}
-	void GetStudentsNum() {
+	void GetStudentsNum() override {
 		cout << Students_Num << "/n";
 	}
-	void GetStaffNum() {
+	void GetStaffNum() override {
 		cout << Staff_Num << "/n";
 	}
 };
-class IT_Department {
+class IT_Department : public Department {
 public:
-	string Name;
-	int Students_Num;
-	int Staff_Num;
-	IT_Department(string n, int StudNum, int StafNum) {
-		Name = n;
-		Students_Num = StudNum;
-		Staff_Num = StafNum;
-	}
-	void GetName() {
+	IT_Department(string n, int StudNum, int StafNum) : Department(n, StudNum, StafNum) {}
+	void GetName() override {
 		cout << Name << "/n";
 	}
-	void GetStudentsNum() {
+	void GetStudentsNum() override {
 		cout << Students_Num << "/n";
 	}
-	void GetStaffNum() {
+	void GetStaffNum() override {
 		cout << Staff_Num << "/n";
 	}
 };
 class CI_Faculty {
 public:
-	CS_Department CS_DEP;
-	IT_Department IT_DEP;
-	void DisplayInfoAboutCSDep() {
-		CS_DEP.GetName();
-		CS_DEP.GetStudentsNum();
-		CS_DEP.GetStaffNum();
+	string Name;
+	vector<Department> Depts;
+	CI_Faculty(string n) {
+		Name = n;
 	}
-	void DisplayInfoAboutITDep() {
-		IT_DEP.GetName();
-		IT_DEP.GetStudentsNum();
-		IT_DEP.GetStaffNum();
+	void AddDepartment(Department& dpt) {
+		Depts.push_back(dpt);
+	}
+	void DisplayInfoAboutDepts() {
+		for(auto& dept : Depts) {
+			dept.GetName();
+			dept.GetStudentsNum();
+			dept.GetStaffNum();
+		}
 	}
 };

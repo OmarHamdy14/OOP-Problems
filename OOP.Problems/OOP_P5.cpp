@@ -4,13 +4,15 @@
 #include <vector>
 #include <memory>
 using namespace std;
+
 /*
 * Problem Statement
-Develop a class that contains an internal helper. The helper should do something important, and the main class should rely on it to complete a task.
+Develop a class that contains an internal helper. The helper should do something important, 
+and the main class should rely on it to complete a task.
 */
 class Helper {
 public:
-	int sum(vector<int> v) {
+	int sum(vector<int>& v) {
 		int sum = 0;
 		for (int i = 0; i < v.size(); i++) sum += v[i];
 		return sum;
@@ -19,19 +21,15 @@ public:
 class Average {
 public:
 	vector<int> numbers;
-	Helper helper;
-	Average(vector<int>& v) {
-		numbers = v;
+	Helper helper; // how to use "const" here ?
+	Average(Helper& hlp) {
+		helper = hlp;
+	}
+	void AddNum(int& x) { // will it make a copy if i dont use "&" ?
+		numbers.push_back(x);
 	}
 	void CalcAverage() {
 		int sum = helper.sum(numbers);
 		cout << sum / numbers.size() << endl;
 	}
 };
-/*
-int main() {
-	vector<int> v{ 1,2,3,4,5,6,7,8,9 };
-	Average average(v);
-	average.CalcAverage();
-}
-*/

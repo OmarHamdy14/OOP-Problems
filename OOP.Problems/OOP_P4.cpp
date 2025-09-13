@@ -16,7 +16,7 @@ public:
 };
 class MultiplyBy10 : public Counter {
 public:
-	void Count(int st) {
+	void Count(int st) override {
 		for (int i = 0; i <= 10 * st; i += 2) {
 			cout << i << " ";
 		}
@@ -25,7 +25,7 @@ public:
 };
 class MultiplyBy20 : public Counter {
 public:
-	void Count(int st) {
+	void Count(int st) override {
 		for (int i = 0; i <= 20 * st; i += 2) {
 			cout << i << " ";
 		}
@@ -34,7 +34,7 @@ public:
 };
 class MultiplyBy30 : public Counter {
 public:
-	void Count(int st) {
+	void Count(int st) override {
 		for (int i = 0; i <= 30 * st; i += 2) {
 			cout << i << " ";
 		}

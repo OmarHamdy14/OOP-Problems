@@ -21,7 +21,7 @@ class Derived1 : public Base {
 	Derived1(int s) : Base(s) {
 
 	}
-	void display() {
+	void display() override {
 		cout << "I'm Derived 1, my score is " << Score << endl;
 	}
 };
@@ -29,7 +29,7 @@ class Derived2 : public Base {
 	Derived2(int s) : Base(s) {
 
 	}
-	void display() {
+	void display() override {
 		cout << "I'm Derived 3, my score is " << Score << endl;
 	}
 };
@@ -37,7 +37,7 @@ class Derived3 : public Base {
 	Derived3(int s) : Base(s) {
 
 	}
-	void display() {
+	void display() override {
 		cout << "I'm Derived 3, my score is " << Score << endl;
 	}
 };

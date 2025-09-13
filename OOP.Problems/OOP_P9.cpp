@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 using namespace std;
+
 /*
 * Problem Statement
 Create a structure where a central service coordinates operations between several independent units. 
@@ -39,7 +40,3 @@ public:
 		}
 	}
 };
-int main() {
-
-
-}

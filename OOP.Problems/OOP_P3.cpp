@@ -1,13 +1,14 @@
-/*
-* Problem Statement
-Write two classes where one accepts a group of the other as input. Those input objects are created separately and passed in.
-*/
 #include "OOP_P3.h"
 #include <iostream>
 #include <string>
 #include <vector>
 #include <memory>
 using namespace std;
+
+/*
+* Problem Statement
+Write two classes where one accepts a group of the other as input. Those input objects are created separately and passed in.
+*/
 class Student {
 public:
 	string Name;
@@ -28,9 +29,11 @@ class Department {
 public:
 	string Name;
 	vector<Student> students;
-	Department(string N, vector<Student>& st) {
+	Department(string N) {
 		Name = N;
-		students = st;
+	}
+	void AddStudent(Student& std) {
+		students.push_back(std);
 	}
 	void DisplayAllStudentsInfo() {
 		for (auto& student : students) {
@@ -41,15 +44,3 @@ public:
 		}
 	}
 };
-/*
-int main() {
-	vector<Student> students = {
-		Student("omar",20,4),
-		Student("ahmed",21,5),
-		Student("amr",19,1)
-	};
-	string s = "CS";
-	Department dept(s, students);
-	dept.DisplayAllStudentsInfo();
-}
-*/

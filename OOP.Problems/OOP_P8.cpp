@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 using namespace std;
+
 /*
 * Problem Statement
 Build a system where a person can manage items in their possession. Each item should perform a different action, 
@@ -41,19 +42,14 @@ class Date : public Fruit {
 class Person { // unique_ptr allows one owner only
 public:
 	string Name;
-	vector<unique_ptr<Fruit>>& MyFruits;
-	Person(string n,vector<unique_ptr<Fruit>>& F) : Name(n),MyFruits(F){} // if i put & after string in constructor, it gives error !!
+	vector<unique_ptr<Fruit>> MyFruits;
+	Person(string& n) : Name(n){} // if i put & after string in constructor, it gives error !!
+	void AddFruit(unique_ptr<Fruit> F) { // is this right ? ========
+		MyFruits.push_back(move(F));
+	}
 	void PrintMyFruits() {
 		for (auto& fruit : MyFruits) {
 			fruit->InfoAboutFruit();
 		}
 	}
 };
-int main() {
-	vector<unique_ptr<Fruit>> v{
-		make_unique<Orange>("Orange", 12.5),
-		make_unique<Apple>("Apple", 15)
-	};
-	Person Omar("Omar",v); 
-	// if i want to make another person, should i creare new unique_ptr  ???
-}

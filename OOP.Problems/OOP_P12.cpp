@@ -6,6 +6,7 @@
 #include <map>
 #include <memory>
 using namespace std;
+
 /*
 * Problem Statement
 Simulate a tournament where participants have different abilities. Each round, they perform actions, 
@@ -15,26 +16,26 @@ class Ability {
 public:
 	string Name;
 	int Score;
-	Ability(string n,int s) : Name(n),Score(s) {}
+	Ability(string& n,int s) : Name(n),Score(s) {}
 	virtual void Perform() = 0;
 };
 class Speed : public Ability {
 public:
-	Speed(string n, int s) : Ability(n,s) {}
+	Speed(string& n, int s) : Ability(n,s) {}
 	void Perform() override {
 		cout << "Name: " << Name << endl << "Score: " << Score << endl;
 	}
 };
 class Physical : public Ability {
 public:
-	Physical(string n, int s) : Ability(n, s) {}
+	Physical(string& n, int s) : Ability(n, s) {}
 	void Perform() override {
 		cout << "Name: " << Name << endl << "Score: " << Score << endl;
 	}
 };
 class Fitness : public Ability {
 public:
-	Fitness(string n, int s) : Ability(n, s) {}
+	Fitness(string& n, int s) : Ability(n, s) {}
 	void Perform() override {
 		cout << "Name: " << Name << endl << "Score: " << Score << endl;
 	}
@@ -44,17 +45,17 @@ public:
 	string Name;
 	vector<shared_ptr<Ability>> Abilities;
 	Participant(string n) : Name(n) {}
-	void AddAbility(shared_ptr<Ability> ability) {
+	void AddAbility(shared_ptr<Ability>& ability) {
 		Abilities.push_back(ability);
 	}
 };
 class ScoreBoard {
 public:
 	map<shared_ptr<Participant>, int> mpScore;
-	void AddPartcipantScore(shared_ptr<Participant> p) {
+	void AddPartcipantScore(shared_ptr<Participant>& p) {
 		mpScore[p] = 0;
 	}
-	void AddValueToScore(shared_ptr<Participant> p, int value) {
+	void AddValueToScore(shared_ptr<Participant>& p, int value) {
 		mpScore[p] += value;
 	}
 	void PrintStanding() {
@@ -70,18 +71,18 @@ public:
 	string Name;
 	vector<shared_ptr<Participant>> Participants;
 	ScoreBoard scoreBoard;
-	Round(string n, ScoreBoard SB) : Name(n), scoreBoard(SB) {}
-	void AddParticipant(shared_ptr<Participant> Participant) {
+	Round(string& n, ScoreBoard SB) : Name(n), scoreBoard(SB) {}
+	void AddParticipant(shared_ptr<Participant>& Participant) {
 		Participants.push_back(Participant);
 	}
 };
 class Competition {
 public:
 	string Name;
-	vector<shared_ptr<Round>> rounds;
+	vector<unique_ptr<Round>> rounds;
 	Competition(string n) : Name(n) {}
-	void AddRound(shared_ptr<Round> r) {
-		rounds.push_back(r);
+	void AddRound(unique_ptr<Round>&& r) {
+		rounds.push_back(move(r));
 	}
 	void PrintResultsOfRounds(){
 	}

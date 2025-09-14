@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 using namespace std;
+
 /*
 * Problem Statement
 Model an organization where different roles have access to different tools. Tools perform operations, and roles use them differently. 
@@ -16,26 +17,26 @@ Ensure that each role only uses the tools allowed for them.
 class Tool {
 public:
 	string Name;
-	Tool(string N) : Name(N) {}
+	Tool(string& N) : Name(N) {}
 	virtual void work(string& userRole) = 0;
 };
 class Tool_A : public Tool {
 public:
-	Tool_A(string n) : Tool(n){}
+	Tool_A(string& n) : Tool(n){}
 	void work(string& userRole) override{
 		cout << userRole << " use " << Name << endl;
 	}
 };
 class Tool_B : public Tool {
 public:
-	Tool_B(string n) : Tool(n) {}
+	Tool_B(string& n) : Tool(n) {}
 	void work(string& userRole) override {
 		cout << userRole << " use " << Name << endl;
 	}
 };
 class Tool_C : public Tool {
 public:
-	Tool_C(string n) : Tool(n) {}
+	Tool_C(string& n) : Tool(n) {}
 	void work(string& userRole) override {
 		cout << userRole << " use " << Name << endl;
 	}
@@ -48,13 +49,13 @@ public:
 	vector<shared_ptr<Tool>> AllowedTools;
 	string Name;
 	Role(string n) : Name(n) {}
-	virtual void addTool(shared_ptr<Tool> tool) = 0;
+	virtual void addTool(shared_ptr<Tool>& tool) = 0;
 	virtual void DisplayWorkAllowedTools() = 0;
 };
 class Manager : public Role {
 public:
 	Manager(string n) : Role(n) {}
-	void addTool(shared_ptr<Tool> tool) override {
+	void addTool(shared_ptr<Tool>& tool) override {
 		AllowedTools.push_back(tool);
 	}
 	void DisplayWorkAllowedTools() override {
@@ -67,7 +68,7 @@ public:
 class SemiManager : public Role {
 public:
 	SemiManager(string n) : Role(n) {}
-	void addTool(shared_ptr<Tool> tool) override {
+	void addTool(shared_ptr<Tool>& tool) override {
 		AllowedTools.push_back(tool);
 	}
 	void DisplayWorkAllowedTools() override {
@@ -80,7 +81,7 @@ public:
 class Assistant : public Role {
 public:
 	Assistant(string n) : Role(n) {}
-	void addTool(shared_ptr<Tool> tool) override {
+	void addTool(shared_ptr<Tool>& tool) override {
 		AllowedTools.push_back(tool);
 	}
 	void DisplayWorkAllowedTools() override {
@@ -92,9 +93,10 @@ public:
 };
 
 int main() {
-	shared_ptr<Tool> toolA = make_shared<Tool_A>();
-	shared_ptr<Tool> toolB = make_shared<Tool_B>();
-	shared_ptr<Tool> toolC = make_shared<Tool_C>();
+	shared_ptr<Tool> toolA = make_shared<Tool_A>("hh"); // unable to obtain mapped memory ???? ==============
+
+	shared_ptr<Tool> toolB = make_shared<Tool_B>("hgg");
+	shared_ptr<Tool> toolC = make_shared<Tool_C>("ggu");
 
 	Manager OmarManager("OmarManager");
 	SemiManager OmarSemiManager("OmarSemiManager");

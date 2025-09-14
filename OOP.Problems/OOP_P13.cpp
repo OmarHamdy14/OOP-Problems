@@ -6,6 +6,7 @@
 #include <map>
 #include <memory>
 using namespace std;
+
 /*
 * Problem Statement
 Build a communication system where users can send different types of messages (text, file, voice, etc.). 
@@ -14,12 +15,13 @@ The system should handle delivery, logging, and allow filtering by type or sende
 class User {
 public:
 	string Name;
-	vector<shared_ptr<Message>> RecievedMessages;
+	vector<unique_ptr<Message>> RecievedMessages;
+	User(string& n) : Name(n) {}
 	void DisplayUserInfo() {
 		cout << "User Name: " << Name << endl;
 	}
-	void RecieveMessage(shared_ptr<Message> message) {
-		RecievedMessages.push_back(message);
+	void RecieveMessage(unique_ptr<Message>&& message) {
+		RecievedMessages.push_back(move(message));
 	}
 };
 class Message {
@@ -27,26 +29,26 @@ public:
 	string Content;
 	shared_ptr<User> Sender;
 	shared_ptr<User> Recipient;
-	Message(string c, shared_ptr<User>s, shared_ptr<User> r) : Content(c),Sender(s),Recipient(r) {}
+	Message(string& c, shared_ptr<User>& s, shared_ptr<User>& r) : Content(c),Sender(s),Recipient(r) {}
 	virtual void DisplayMessageInfo() = 0;
 };
 class TextMessage : public Message {
 public:
-	TextMessage(string c, shared_ptr<User>s, shared_ptr<User> r) : Message(c,s,r) {}
+	TextMessage(string& c, shared_ptr<User>& s, shared_ptr<User>& r) : Message(c,s,r) {}
 	void DisplayMessageInfo() override {
 		cout << "Type: Text" << endl << "Content: " << Content;
 	}
 };
 class FileMessage : public Message {
 public:
-	FileMessage(string c, shared_ptr<User>s, shared_ptr<User> r) : Message(c, s, r) {}
+	FileMessage(string& c, shared_ptr<User>& s, shared_ptr<User>& r) : Message(c, s, r) {}
 	void DisplayMessageInfo() override {
 		cout << "Type: File" << endl << "Content: " << Content;
 	}
 };
 class VoiceMessage : public Message {
 public:
-	VoiceMessage(string c, shared_ptr<User>s, shared_ptr<User> r) : Message(c, s, r) {}
+	VoiceMessage(string& c, shared_ptr<User>& s, shared_ptr<User>& r) : Message(c, s, r) {}
 	void DisplayMessageInfo() override {
 		cout << "Type: Voice" << endl << "Content: " << Content;
 	}
@@ -54,9 +56,9 @@ public:
 
 class MessagesHistory {
 public:
-	vector<shared_ptr<Message>> Messages;
-	void SaveMessage(shared_ptr<Message> message) {
-		Messages.push_back(message);
+	vector<unique_ptr<Message>> Messages;
+	void SaveMessage(unique_ptr<Message>&& message) {
+		Messages.push_back(move(message));
 	}
 	void DisplayAllMessages() {
 		for (auto& message : Messages) {
@@ -65,7 +67,7 @@ public:
 			cout << "Message: " << message->Content << endl;
 		}
 	}
-	void DisplayAllMessagesBySenderName(string SenderName) {
+	void DisplayAllMessagesBySenderName(string& SenderName) {
 		for (auto& message : Messages) {
 			if (message->Sender->Name == SenderName) {
 				cout << "From: " << message->Sender->Name << endl;
@@ -77,11 +79,11 @@ public:
 };
 class MessageDelivery {
 public:
-	MessagesHistory Logger;
+	MessagesHistory& Logger;
 	MessageDelivery(MessagesHistory& L) : Logger(L){}
-	void DeliverMessage(shared_ptr<Message> message, shared_ptr<User> Sender, shared_ptr<User> Recipient) {
-		Logger.SaveMessage(message);
-		Recipient->RecieveMessage(message);
+	void DeliverMessage(unique_ptr<Message>&& message, shared_ptr<User> Sender, shared_ptr<User> Recipient) {
+		Logger.SaveMessage(move(message));
+		Recipient->RecieveMessage(move(message));
 	}
 };
 

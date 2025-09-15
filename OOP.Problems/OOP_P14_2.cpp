@@ -5,7 +5,6 @@
 #include <algorithm>
 using namespace std;
 
-// ---------------- Offer ----------------
 class Offer {
 private:
     string Name;
@@ -22,7 +21,6 @@ public:
     }
 };
 
-// ---------------- Seller ----------------
 class Seller {
 private:
     string Name;
@@ -61,7 +59,6 @@ public:
     }
 };
 
-// ---------------- Buyer ----------------
 class Buyer {
 private:
     string Name;
@@ -76,7 +73,6 @@ public:
     }
 };
 
-// ---------------- Transaction ----------------
 class Transaction {
 private:
     Buyer buyer;
@@ -95,7 +91,6 @@ public:
     }
 };
 
-// ---------------- Marketplace ----------------
 class Marketplace {
 private:
     vector<Seller*> sellers;
@@ -125,7 +120,6 @@ public:
         transactions.push_back(tx);
         tx.Process();
 
-        // Remove the offer after purchase
         seller->RemoveOffer(index);
     }
 
@@ -136,13 +130,11 @@ public:
             return;
         }
         for (auto& t : transactions) {
-            // Re-run transaction printout for simplicity
             t.Process();
         }
     }
 };
 
-// ---------------- Main ----------------
 int main() {
     // Sellers
     Seller s1("Alice");

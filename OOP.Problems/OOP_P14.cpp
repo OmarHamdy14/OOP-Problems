@@ -42,33 +42,38 @@ public:
 	string Name;
 	vector<unique_ptr<Offer>> Purchases;
 	Buyer(string& N) : Name(N) {}
+	void AddPurchase(unique_ptr<Offer>&& of) {
+		Purchases.push_back(move(of));
+	}
 };
 
 class Transaction {
 public:
 	Seller& seller;
 	Buyer& buyer;
-	unique_ptr<Offer> offer;
-	Transaction(Seller& s, Buyer& b, unique_ptr<Offer>&& Of) : seller(s),buyer(b),offer(move(Of)) {}
-	void CreateTransaction(Seller& seller, Buyer& buyer, unique_ptr<Offer>& offer) {
+	string OfferName;
+	Transaction(Seller& s, Buyer& b, unique_ptr<Offer>&& offer) : seller(s),buyer(b),OfferName(offer->Name) {
 		cout << "Seller Name: " << seller.Name << endl;
 		cout << "Offer Details: ";
 		offer->DisplayInfo();
 		cout << "Buyer Name: " << buyer.Name << endl;
+		buyer.AddPurchase(move(offer));
 	}
+	//void CreateTransaction(Seller& seller, Buyer& buyer, unique_ptr<Offer>&& offer) {}
 };
 
 class Marketplace {
 public:
+	string Name;
+	Marketplace(string& n) : Name(n) {}
 	vector<unique_ptr<Transaction>> Transactions;
-	void AddTransaction(unique_ptr<Transaction> tra) {
+	void AddTransaction(unique_ptr<Transaction>&& tra) {
 		Transactions.push_back(move(tra));
 	}
-
 };
 
 
-
+/*
 class Transaction2 {
 private:
 	Buyer buyer;
@@ -87,7 +92,7 @@ public:
 	}
 };
 
-/*class Seller {
+class Seller {
 private:
 	string Name;
 	vector<Offer> Offers;
@@ -121,7 +126,7 @@ public:
 			Offers[i].DisplayInfo();
 		}
 	}
-};*/
+};
 
 class Seller2 {
 private:
@@ -160,3 +165,4 @@ public:
 		}
 	}
 };
+*/

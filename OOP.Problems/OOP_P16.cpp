@@ -6,6 +6,7 @@
 #include <map>
 #include <memory>
 using namespace std;
+
 /*
 * Problem Statement
 Bank Account System 
@@ -21,14 +22,14 @@ public:
     Account(const string& accNum, double initialBalance)
         : accountNumber(accNum), balance(initialBalance) {}
 
-    virtual ~Account() = default;
+    virtual ~Account() = default;          // EXPLAIN ??? ======
 
     virtual void Deposit(double amount) {
         balance += amount;
         cout << "Deposited $" << amount << " into account " << accountNumber << endl;
     }
 
-    virtual void Withdraw(double amount) = 0; // abstract, different rules for each
+    virtual void Withdraw(double amount) = 0;
 
     double GetBalance() const {
         return balance;

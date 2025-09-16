@@ -139,6 +139,7 @@
     <ClCompile Include="OOP_P15_2.cpp" />
     <ClCompile Include="OOP_P16.cpp" />
     <ClCompile Include="OOP_P17.cpp" />
+    <ClCompile Include="OOP_P18.cpp" />
     <ClCompile Include="OOP_P2.cpp" />
     <ClCompile Include="OOP_P3.cpp" />
     <ClCompile Include="OOP_P4.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="OOP_P15_2.h" />
     <ClInclude Include="OOP_P16.h" />
     <ClInclude Include="OOP_P17.h" />
+    <ClInclude Include="OOP_P18.h" />
     <ClInclude Include="OOP_P2.h" />
     <ClInclude Include="OOP_P3.h" />
     <ClInclude Include="OOP_P4.h" />

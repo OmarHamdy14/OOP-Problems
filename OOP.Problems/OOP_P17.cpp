@@ -7,11 +7,12 @@
 #include <memory>
 using namespace std;
 
-#include <iostream>
-#include <vector>
-#include <string>
-using namespace std;
-
+/*
+* Problem Statement
+Student Management
+- Students enroll in courses, courses have grades.
+- Provide methods to calculate GPA.
+*/
 class Course {
     string name;
     double grade;

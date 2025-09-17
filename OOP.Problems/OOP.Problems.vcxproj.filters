@@ -78,6 +78,9 @@
     <ClCompile Include="OOP_P18.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OOP_P19.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OOP_P1.h">
@@ -138,6 +141,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OOP_P18.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OOP_P19.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

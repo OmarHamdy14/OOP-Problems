@@ -93,6 +93,9 @@
     <ClCompile Include="OOP_P23.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="P24.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OOP_P1.h">
@@ -168,6 +171,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OOP_P23.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="P24.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

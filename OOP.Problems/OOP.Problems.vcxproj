@@ -153,6 +153,7 @@
     <ClCompile Include="OOP_P7.cpp" />
     <ClCompile Include="OOP_P8.cpp" />
     <ClCompile Include="OOP_P9.cpp" />
+    <ClCompile Include="P24.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OOP_P1.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="OOP_P7.h" />
     <ClInclude Include="OOP_P8.h" />
     <ClInclude Include="OOP_P9.h" />
+    <ClInclude Include="P24.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

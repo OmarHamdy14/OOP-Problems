@@ -156,6 +156,7 @@
     <ClCompile Include="P24.cpp" />
     <ClCompile Include="P25.cpp" />
     <ClCompile Include="P26.cpp" />
+    <ClCompile Include="P27.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OOP_P1.h" />
@@ -186,6 +187,7 @@
     <ClInclude Include="P24.h" />
     <ClInclude Include="P25.h" />
     <ClInclude Include="P26.h" />
+    <ClInclude Include="P27.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

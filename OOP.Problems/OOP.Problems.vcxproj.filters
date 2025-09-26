@@ -105,6 +105,9 @@
     <ClCompile Include="P27.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="P28.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OOP_P1.h">
@@ -192,6 +195,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="P27.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="P28.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

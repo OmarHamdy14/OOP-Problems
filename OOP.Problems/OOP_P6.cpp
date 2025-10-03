@@ -12,15 +12,16 @@ The same secondary objects should be reusable elsewhere.
 */
 
 class Course {
-public:
     string name;
+public:
     Course(string& name) : name(name) {}
     string GetName() const { return name; }
+    void SetName(string& n) { name = n; }
 };
 
 class Student {
-public:
     string name;
+public:
     vector<shared_ptr<Course>> Courses;
     Student(string& name) : name(name){}
 
@@ -34,4 +35,7 @@ public:
             std::cout << " * " << course->GetName() << "\n";
         }
     }
+
+    string GetName() const { return name; }
+    void SetName(string& n) { name = n; }
 };

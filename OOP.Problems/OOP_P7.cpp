@@ -23,10 +23,13 @@ public:
 	}
 };
 class Device {
-public:
+protected:
 	string Name;
+public:
 	Device(string n) : Name(n) {}
 	virtual void InfoAboutDev() = 0;
+	virtual string GetName() const = 0;
+	virtual void SetName(string& n) = 0;
 };
 class Printer : public Device {
 public:
@@ -34,6 +37,8 @@ public:
 	void InfoAboutDev() override {
 		cout << "Device Name: " << Name << endl;
 	}
+	string GetName() const override { return Name; }
+	void SetName(string& n) override { Name = n; }
 };
 class TV : public Device {
 public:
@@ -41,6 +46,8 @@ public:
 	void InfoAboutDev() override {
 		cout << "Device Name: " << Name << endl;
 	}
+	string GetName() const override { return Name; }
+	void SetName(string& n) override { Name = n; }
 };
 class PC : public Device {
 public:
@@ -48,6 +55,8 @@ public:
 	void InfoAboutDev() override {
 		cout << "Device Name: " << Name << endl;
 	}
+	string GetName() const override { return Name; }
+	void SetName(string& n) override { Name = n; }
 };
 class DeviceManager {
 public:
@@ -62,7 +71,7 @@ public:
 	}
 	void StartAllDeviecs() {
 		for (auto& device : devices) {
-			internalPart.SendMsg(device->Name);
+			internalPart.SendMsg(device->GetName());
 			device->InfoAboutDev();
 			outsideElement.PrintAnyThing("ssssssssssssssss");
 		}

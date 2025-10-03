@@ -10,24 +10,23 @@ using namespace std;
 Write two classes where one accepts a group of the other as input. Those input objects are created separately and passed in.
 */
 class Student {
-public:
 	string Name;
 	int age;
 	int level;
+public:
 	Student(string n, int a, int l) { Name = n; age = a; level = l; }
-	void GetName() {
-		cout << Name << endl;
+	string GetName() {
+		return Name;
 	}
-	void GetAge() {
-		cout << age << endl;
-	}
-	void GetLevel() {
-		cout << level << endl;
-	}
+	int GetAge() const { return age; }
+	int GetLevel() const { return level; }
+	void SetName(string& n) { Name = n; }
+	void SetAge(int ag) { age = ag; }
+	void SetLevel(int lv) { level = lv; }
 };
 class Department {
-public:
 	string Name;
+public:
 	vector<Student> students;
 	Department(string N) {
 		Name = N;
@@ -43,4 +42,6 @@ public:
 
 		}
 	}
+	string GetName() const { return Name; }
+	void SetName(string& n) { Name = n; }
 };

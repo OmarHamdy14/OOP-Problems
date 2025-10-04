@@ -15,9 +15,7 @@ class Student {
 	int level;
 public:
 	Student(string n, int a, int l) { Name = n; age = a; level = l; }
-	string GetName() {
-		return Name;
-	}
+	string GetName() { return Name; }
 	int GetAge() const { return age; }
 	int GetLevel() const { return level; }
 	void SetName(string& n) { Name = n; }
@@ -26,8 +24,8 @@ public:
 };
 class Department {
 	string Name;
-public:
 	vector<Student> students;
+public:
 	Department(string N) {
 		Name = N;
 	}

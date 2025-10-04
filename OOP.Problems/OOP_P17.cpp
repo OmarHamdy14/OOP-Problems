@@ -20,6 +20,8 @@ public:
     Course(const string& n, double g) : name(n), grade(g) {}
     double GetGrade() const { return grade; }
     string GetName() const { return name; }
+    void SetGrade(double g) { grade = g; }
+    void SetName(string& n) { name = n; }
 };
 
 class Student {
@@ -41,4 +43,6 @@ public:
         }
         cout << "GPA: " << CalculateGPA() << endl;
     }
+    string GetName() const { return name; }
+    void SetName(string& n) { name = n; }
 };

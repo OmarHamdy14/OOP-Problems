@@ -15,10 +15,13 @@ Ensure that each role only uses the tools allowed for them.
 
 
 class Tool {
-public:
+protected:
 	string Name;
+public:
 	Tool(string& N) : Name(N) {}
 	virtual void work(string& userRole) = 0;
+	virtual string GetName() const = 0;
+	virtual void SetName(string& s) = 0;
 };
 class Tool_A : public Tool {
 public:
@@ -26,6 +29,8 @@ public:
 	void work(string& userRole) override{
 		cout << userRole << " use " << Name << endl;
 	}
+	string GetName() const override { return Name; }
+	void SetName(string& s) override { Name = s; }
 };
 class Tool_B : public Tool {
 public:
@@ -33,6 +38,8 @@ public:
 	void work(string& userRole) override {
 		cout << userRole << " use " << Name << endl;
 	}
+	string GetName() const override { return Name; }
+	void SetName(string& s) override { Name = s; }
 };
 class Tool_C : public Tool {
 public:
@@ -40,17 +47,22 @@ public:
 	void work(string& userRole) override {
 		cout << userRole << " use " << Name << endl;
 	}
+	string GetName() const override { return Name; }
+	void SetName(string& s) override { Name = s; }
 };
 
 
 
 class Role {
-public:
-	vector<shared_ptr<Tool>> AllowedTools;
+protected:
 	string Name;
+	vector<shared_ptr<Tool>> AllowedTools;
+public:
 	Role(string n) : Name(n) {}
 	virtual void addTool(shared_ptr<Tool>& tool) = 0;
 	virtual void DisplayWorkAllowedTools() = 0;
+	virtual string GetName() const = 0;
+	virtual void SetName(string& s) = 0;
 };
 class Manager : public Role {
 public:
@@ -60,10 +72,12 @@ public:
 	}
 	void DisplayWorkAllowedTools() override {
 		for (auto& tool : AllowedTools) {
-			cout << tool->Name << endl;
+			cout << tool->GetName() << endl;
 			tool->work(Name);
 		}
 	}
+	string GetName() const override { return Name; }
+	void SetName(string& s) override { Name = s; }
 };
 class SemiManager : public Role {
 public:
@@ -73,10 +87,12 @@ public:
 	}
 	void DisplayWorkAllowedTools() override {
 		for (auto& tool : AllowedTools) {
-			cout << tool->Name << endl;
+			cout << tool->GetName() << endl;
 			tool->work(Name);
 		}
 	}
+	string GetName() const override { return Name; }
+	void SetName(string& s) override { Name = s; }
 };
 class Assistant : public Role {
 public:
@@ -86,10 +102,12 @@ public:
 	}
 	void DisplayWorkAllowedTools() override {
 		for (auto& tool : AllowedTools) {
-			cout << tool->Name << endl;
+			cout << tool->GetName() << endl;
 			tool->work(Name);
 		}
 	}
+	string GetName() const override { return Name; }
+	void SetName(string& s) override { Name = s; }
 };
 
 int main() {

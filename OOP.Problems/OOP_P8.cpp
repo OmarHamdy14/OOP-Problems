@@ -58,8 +58,8 @@ class Date : public Fruit {
 };
 class Person { // unique_ptr allows one owner only
 	string Name;
-public:
 	vector<unique_ptr<Fruit>> MyFruits;
+public:
 	Person(string& n) : Name(n){} // if i put & after string in constructor, it gives error !!
 	void AddFruit(unique_ptr<Fruit> F) { // is this right ? ========
 		MyFruits.push_back(move(F));

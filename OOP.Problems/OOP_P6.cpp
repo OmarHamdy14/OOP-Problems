@@ -21,8 +21,8 @@ public:
 
 class Student {
     string name;
-public:
     vector<shared_ptr<Course>> Courses;
+public:
     Student(string& name) : name(name){}
 
     void AddCourse(shared_ptr<Course> crs) {

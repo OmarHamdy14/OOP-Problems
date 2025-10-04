@@ -13,18 +13,22 @@ Implement a virtual marketplace. Sellers can list offerings, buyers can place re
 between them. Each transaction involves multiple steps, and the system manages those steps across different roles.
 */
 class Offer {
-public:
 	string Name;
 	double Price;
+public:
 	Offer(string& n,double p) : Name(n),Price(p) {}
 	void DisplayInfo() {
 		cout << Name << " " << Price << endl;
 	}
+	string GetName() const { return Name; }
+	void SetName(string& s) { Name = s; }
+	double GetPrice() const { return Price; }
+	void SetPrice(double p) { Price = p; }
 };
 class Seller {
-public:
 	string Name;
 	vector<unique_ptr<Offer>> Offers;
+public:
 	Seller(string& N) : Name(N) {}
 	void CreateOffer(string& N, double P) {
 		Offers.push_back(make_unique<Offer>(N, P));
@@ -35,41 +39,47 @@ public:
 			offer->DisplayInfo();
 		}
 	}
+	string GetName() const { return Name; }
+	void SetName(string& s) { Name = s; }
 };
 
 class Buyer {
-public:
 	string Name;
 	vector<unique_ptr<Offer>> Purchases;
+public:
 	Buyer(string& N) : Name(N) {}
 	void AddPurchase(unique_ptr<Offer>&& of) {
 		Purchases.push_back(move(of));
 	}
+	string GetName() const { return Name; }
+	void SetName(string& s) { Name = s; }
 };
 
 class Transaction {
-public:
 	Seller& seller;
 	Buyer& buyer;
 	string OfferName;
-	Transaction(Seller& s, Buyer& b, unique_ptr<Offer>&& offer) : seller(s),buyer(b),OfferName(offer->Name) {
-		cout << "Seller Name: " << seller.Name << endl;
+public:
+	Transaction(Seller& s, Buyer& b, unique_ptr<Offer>&& offer) : seller(s),buyer(b),OfferName(offer->GetName()) {
+		cout << "Seller Name: " << seller.GetName() << endl;
 		cout << "Offer Details: ";
 		offer->DisplayInfo();
-		cout << "Buyer Name: " << buyer.Name << endl;
+		cout << "Buyer Name: " << buyer.GetName() << endl;
 		buyer.AddPurchase(move(offer));
 	}
 	//void CreateTransaction(Seller& seller, Buyer& buyer, unique_ptr<Offer>&& offer) {}
 };
 
 class Marketplace {
-public:
 	string Name;
+public:
 	Marketplace(string& n) : Name(n) {}
 	vector<unique_ptr<Transaction>> Transactions;
 	void AddTransaction(unique_ptr<Transaction>&& tra) {
 		Transactions.push_back(move(tra));
 	}
+	string GetName() const { return Name; }
+	void SetName(string& s) { Name = s; }
 };
 
 

@@ -28,8 +28,8 @@ public:
 };
 class User {
 	string Name;
-public:
 	vector<unique_ptr<Book>> MyBooks;
+public:
 	//vector<shared_ptr<Book>> MyBooks;
 	User(string& nm) : Name(nm) {}
 	void BuyBook(unique_ptr<Book> b) {
@@ -50,8 +50,8 @@ public:
 };
 class Library {
 	string Name;
-public:
 	vector<unique_ptr<Book>> Books;
+public:
 	Library(string& n) : Name(n) {}
 	string GetName() const { return Name; }
 	void SetName(string& s) { Name = s; }

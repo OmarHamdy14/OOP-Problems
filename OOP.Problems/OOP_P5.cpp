@@ -19,9 +19,9 @@ public:
 	}
 };
 class Average {
-public:
 	vector<int> numbers;
-	Helper helper; // how to use "const" here ?
+	Helper& helper; // how to use "const" here ?
+public:
 	Average(Helper& hlp) {
 		helper = hlp;
 	}

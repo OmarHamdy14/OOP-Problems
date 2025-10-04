@@ -59,10 +59,10 @@ public:
 	void SetName(string& n) override { Name = n; }
 };
 class DeviceManager {
-public:
 	vector<shared_ptr<Device>> devices;
 	InternalPart& internalPart;
 	OutsideElement outsideElement;
+public:
 	/* when i write "vector<shared_ptr<Device>>& devices;" the constructor gives me this error : "DeviceManager(OutsideElement& OE)"
 	provide no intilization for : reference member "devices" */
 	DeviceManager(InternalPart& iE, OutsideElement& OE) : internalPart(iE), outsideElement(OE) {}

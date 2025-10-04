@@ -13,9 +13,9 @@ Build a communication system where users can send different types of messages (t
 The system should handle delivery, logging, and allow filtering by type or sender.
 */
 class User {
-public:
 	string Name;
 	vector<unique_ptr<Message>> RecievedMessages;
+public:
 	User(string& n) : Name(n) {}
 	void DisplayUserInfo() {
 		cout << "User Name: " << Name << endl;
@@ -23,14 +23,19 @@ public:
 	void RecieveMessage(unique_ptr<Message>&& message) {
 		RecievedMessages.push_back(move(message));
 	}
+	string GetName() const { return Name; }
+	void SetName(string& s) { Name = s; }
 };
 class Message {
-public:
+protected:
 	string Content;
+public:
 	shared_ptr<User> Sender;
 	shared_ptr<User> Recipient;
 	Message(string& c, shared_ptr<User>& s, shared_ptr<User>& r) : Content(c),Sender(s),Recipient(r) {}
 	virtual void DisplayMessageInfo() = 0;
+	virtual string GetContent() const = 0;
+	virtual void SetContent(string& c) = 0;
 };
 class TextMessage : public Message {
 public:
@@ -38,6 +43,8 @@ public:
 	void DisplayMessageInfo() override {
 		cout << "Type: Text" << endl << "Content: " << Content;
 	}
+	string GetContent() const override { return Content; }
+	void SetContent(string& c) override { Content = c; }
 };
 class FileMessage : public Message {
 public:
@@ -45,6 +52,8 @@ public:
 	void DisplayMessageInfo() override {
 		cout << "Type: File" << endl << "Content: " << Content;
 	}
+	string GetContent() const override { return Content; }
+	void SetContent(string& c) override { Content = c; }
 };
 class VoiceMessage : public Message {
 public:
@@ -52,34 +61,36 @@ public:
 	void DisplayMessageInfo() override {
 		cout << "Type: Voice" << endl << "Content: " << Content;
 	}
+	string GetContent() const override { return Content; }
+	void SetContent(string& c) override { Content = c; }
 };
 
 class MessagesHistory {
-public:
 	vector<unique_ptr<Message>> Messages;
+public:
 	void SaveMessage(unique_ptr<Message>&& message) {
 		Messages.push_back(move(message));
 	}
 	void DisplayAllMessages() {
 		for (auto& message : Messages) {
-			cout << "From: " << message->Sender->Name << endl;
-			cout << "To: " << message->Recipient->Name << endl;
-			cout << "Message: " << message->Content << endl;
+			cout << "From: " << message->Sender->GetName() << endl;
+			cout << "To: " << message->Recipient->GetName() << endl;
+			cout << "Message: " << message->GetContent() << endl;
 		}
 	}
 	void DisplayAllMessagesBySenderName(string& SenderName) {
 		for (auto& message : Messages) {
-			if (message->Sender->Name == SenderName) {
-				cout << "From: " << message->Sender->Name << endl;
-				cout << "To: " << message->Recipient->Name << endl;
-				cout << "Message: " << message->Content << endl;
+			if (message->Sender->GetName() == SenderName) {
+				cout << "From: " << message->Sender->GetName() << endl;
+				cout << "To: " << message->Recipient->GetName() << endl;
+				cout << "Message: " << message->GetContent() << endl;
 			}
 		}
 	}
 };
 class MessageDelivery {
-public:
 	MessagesHistory& Logger;
+public:
 	MessageDelivery(MessagesHistory& L) : Logger(L){}
 	void DeliverMessage(unique_ptr<Message>&& message, shared_ptr<User> Sender, shared_ptr<User> Recipient) {
 		Logger.SaveMessage(move(message));

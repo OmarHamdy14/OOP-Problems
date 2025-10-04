@@ -29,8 +29,8 @@ public:
 	}
 };
 class CentralService {
-public:
 	vector<shared_ptr<Common>> Commons;
+public:
 	void AddOperation(shared_ptr<Common> u) {
 		Commons.push_back(u);
 	}

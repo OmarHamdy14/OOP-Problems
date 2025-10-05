@@ -14,9 +14,11 @@ Music Playlist
 - Playlists can repeat, or auto-generate based on mood.
 */
 class Song {
-public:
 	string Name;
+public:
 	Song(string& n) : Name(n) {}
+	string GetName() const { return Name; }
+	void SetName(string n) { Name = n; }
 };
 
 enum Mode {
@@ -24,19 +26,23 @@ enum Mode {
 	autoGenerate
 };
 class Playlist {
-public:
 	string Name;
 	Mode mode;
 	vector<shared_ptr<Song>> Songs;
+public:
 	Playlist(string& n, Mode m) : Name(n),mode(m) {}
 	void AddSong(shared_ptr<Song>& sg) {
 		Songs.push_back(sg);
 	}
+	string GetName() const { return Name; }
+	void SetName(string n) { Name = n; }
+	Mode GetMode() const { return mode; }
+	void SetMode(Mode n) { mode = n; }
 };
 
 class MusicManager {
-public:
 	vector<unique_ptr<Playlist>> pls;
+public:
 	void AddPL(unique_ptr<Playlist>&& pl) {
 		pls.push_back(move(pl));
 	}

@@ -19,11 +19,16 @@ enum Mode {
 	vacation
 };
 class Device {
-public:
+protected:
 	string Name;
 	Mode mode;
+public:
 	Device(string& n,Mode m) : Name(n),mode(m) {}
 	virtual void Intro() = 0;
+	virtual string GetName() const = 0;
+	virtual void SetName(string n) = 0;
+	virtual Mode GetMode() const = 0;
+	virtual void SetMode(Mode n) = 0;
 };
 class Light : public Device {
 public:
@@ -31,6 +36,10 @@ public:
 	void Intro() override {
 		cout << "Light\n";
 	}
+	string GetName() const override { return Name; }
+	void SetName(string n) override { Name = n; }
+	Mode GetMode() const override { return mode; }
+	void SetMode(Mode n) override { mode = n; }
 };
 class AC : public Device {
 public:
@@ -38,6 +47,10 @@ public:
 	void Intro() override {
 		cout << "AC\n";
 	}
+	string GetName() const override { return Name; }
+	void SetName(string n) override { Name = n; }
+	Mode GetMode() const override { return mode; }
+	void SetMode(Mode n) override { mode = n; }
 };
 class Camera : public Device {
 public:
@@ -45,16 +58,20 @@ public:
 	void Intro() override {
 		cout << "Camera\n";
 	}
+	string GetName() const override { return Name; }
+	void SetName(string n) override { Name = n; }
+	Mode GetMode() const override { return mode; }
+	void SetMode(Mode n) override { mode = n; }
 };
 
 class Controller {
-public:
 	vector<unique_ptr<Device>> devcs;
+public:
 	void AddDevice(unique_ptr<Device>&& d) {
 		devcs.push_back(move(d));
 	}
 	void ChangeMode(unique_ptr<Device>& d, Mode m) {
-		d->mode = m;
+		d->SetMode(m);
 	}
 	void DisplayDevices() {
 		for (auto& d : devcs) {

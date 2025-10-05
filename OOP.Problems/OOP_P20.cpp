@@ -14,13 +14,22 @@ Online Quiz System
 - Track answers and calculate scores.
 */
 class Question {        // is abstraction always important ?? ========
-public:
+protected:
 	string Content;
 	int Marks;
 	int QNum;
 	string TrueAnswer;
+public:
 	Question(string& c,int m, int qn,string& TA) : Content(c),Marks(m),QNum(qn),TrueAnswer(TA) {}
 	virtual void Display() = 0;
+	virtual string GetContent() const = 0;
+	virtual void SetContent(string& n) = 0;
+	virtual int GetMarks() const = 0;
+	virtual void SetMarks(int n) = 0;
+	virtual int GetQNum() const = 0;
+	virtual void SetQNum(int n) = 0;
+	virtual string GetTrueAnswer() const = 0;
+	virtual void SetTrueAnswer(string& n) = 0;
 };
 class MCQ : public Question {
 public:
@@ -29,6 +38,14 @@ public:
 	void Display() override {
 		cout << Content << "\n" << Marks << "\n";
 	}
+	string GetContent() const override { return Content; }
+	void SetContent(string& n) override { Content = n; }
+	int GetMarks() const override { return Marks; }
+	void SetMarks(int n) override { Marks = n; }
+	int GetQNum() const override { return QNum; }
+	void SetQNum(int n) override { QNum = n; }
+	string GetTrueAnswer() const override { return TrueAnswer; }
+	void SetTrueAnswer(string& n) override { TrueAnswer = n; }
 };
 class TrueFalse : public Question {
 public:
@@ -36,6 +53,14 @@ public:
 	void Display() override {
 		cout << Content << "\n" << Marks << "\n";
 	}
+	string GetContent() const override { return Content; }
+	void SetContent(string& n) override { Content = n; }
+	int GetMarks() const override { return Marks; }
+	void SetMarks(int n) override { Marks = n; }
+	int GetQNum() const override { return QNum; }
+	void SetQNum(int n) override { QNum = n; }
+	string GetTrueAnswer() const override { return TrueAnswer; }
+	void SetTrueAnswer(string& n) override { TrueAnswer = n; }
 };
 class OpenEnded : public Question {
 public:
@@ -43,16 +68,28 @@ public:
 	void Display() override {
 		cout << Content << "\n" << Marks << "\n";
 	}
+	string GetContent() const override { return Content; }
+	void SetContent(string& n) override { Content = n; }
+	int GetMarks() const override { return Marks; }
+	void SetMarks(int n) override { Marks = n; }
+	int GetQNum() const override { return QNum; }
+	void SetQNum(int n) override { QNum = n; }
+	string GetTrueAnswer() const override { return TrueAnswer; }
+	void SetTrueAnswer(string& n) override { TrueAnswer = n; }
 };
 
 class Quiz {
-public:
 	vector<shared_ptr<Question>> Questions;
+public:
 };
 
 class Student {
-public:
 	string Name;
 	vector<shared_ptr<Quiz>> Quizzes;
 	int Score;
+public:
+	string GetName() const { return Name; }
+	void SetName(string& n) { Name = n; }
+	int GetScore() const { return Score; }
+	void SetScore(int n) { Score = n; }
 };

@@ -14,24 +14,28 @@ Shopping Cart
 - Discounts or coupons can be applied.
 */
 class Product {
-public:
 	string Name;
 	double Price;
+public:
 	Product(string& n,double p) : Name(n),Price(p) {}
+	string GetName() const { return Name; }
+	void SetName(string& n) { Name = n; }
+	double GetPrice() const { return Price; }
+	void SetPrice(double p) { Price = p; }
 };
 
 class Cart {
-public:
 	vector<Product> Products;
+public:
 	void AddProduct(Product& Pr) {
 		Products.push_back(move(Pr));
 	}
 	void RemoveProduct(string& name) {
 		for (auto it = Products.begin(); it != Products.end(); ++it) {
-			if (it->Name == name) { Products.erase(it); break; }
+			if (it->GetName() == name) { Products.erase(it); break; }
 		}
 	}
 	void DisplayCart() {
-		for (auto& p : Products) { cout << p.Name << " " << p.Price << endl; }
+		for (auto& p : Products) { cout << p.GetName() << " " << p.GetPrice() << endl; }
 	}
 };

@@ -14,23 +14,27 @@ Video Streaming Service
 - Track watch history and suggest recommendations.
 */
 class Video {
-public:
 	string Name;
+public:
 	Video(string& n) : Name(n) {}
 	void Info() {
 		cout << Name << "\n";
 	}
+	string GetName() const { return Name; }
+	void SetName(string n) { Name = n; }
 };
 
 class Channel {
-public:
 	string Name;
 	vector<unique_ptr<Video>> OwnVds;
 	WatchHistory WH;
+public:
 	void AddVideo(string& n) {
 		OwnVds.push_back(make_unique<Video>(n));
 	}
 	void WatchVideo() {}
+	string GetName() const { return Name; }
+	void SetName(string n) { Name = n; }
 };
 
 struct VideoData {
@@ -38,17 +42,17 @@ struct VideoData {
 	time_t time;
  };
 class WatchHistory {
-public:
 	vector<VideoData> vdt;
+public:
 	void AddVDT(unique_ptr<Video>& v) {
-		VideoData vv = { v->Name, time(0) };
+		VideoData vv = { v->GetName(), time(0)};
 		vdt.push_back(vv);
 	}
 };
 
 class VideoPlatform {
-public:
 	vector<unique_ptr<Channel>> Chs;
+public:
 	void AddChannel(string& n) {
 		Chs.push_back(make_unique<Channel>(n));
 	}

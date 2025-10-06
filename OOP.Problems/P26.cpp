@@ -14,19 +14,23 @@ Stock Trading System
 - Orders are matched and executed in a transaction history.
 */
 class Product {
-public:
 	string Name;
 	float Price;
+public:
 	Product(string& n,float p) : Name(n),Price(p) {}
 	void Info() {
 		cout << "Product Name: " << Name << "\n" << "Price: " << Price << "\n";
 	}
+	string GetName() const { return Name; }
+	void SetName(string n) { Name = n; }
+	float GetPrice() const { return Price; }
+	void SetPrice(float n) { Price = n; }
 };
 
 class Buyer {
-public:
 	string Name;
 	vector<unique_ptr<Product>> Purchases;
+public:
 	void AddPurchase(unique_ptr<Product>&& p) {
 		Purchases.push_back(move(p));
 	}
@@ -35,11 +39,13 @@ public:
 			p->Info();
 		}
 	}
+	string GetName() const { return Name; }
+	void SetName(string n) { Name = n; }
 };
 class Seller {
-public:
 	string Name;
 	vector<unique_ptr<Product>> Sales;
+public:
 	void AddSale(string& n, float pr) {
 		Sales.push_back(make_unique<Product>(n,pr));
 	}
@@ -48,22 +54,28 @@ public:
 			s->Info();
 		}
 	}
+	string GetName() const { return Name; }
+	void SetName(string n) { Name = n; }
 };
 
 class Transaction {
-public:
 	string ProductName;
 	float Paid;
 	Seller& slr;
 	Buyer& byr;
+public:
 	Transaction(string& pn, float pd, Seller& sl, Buyer& by) : ProductName(pn),slr(sl),byr(by),Paid(pd) {}
+	string GetProductName() const { return ProductName; }
+	void SetProductName(string n) { ProductName = n; }
+	float GetPaid() const { return Paid; }
+	void SetPaid(float n) { Paid = n; }
 };
 
 class History {
-public:
 	vector<unique_ptr<Transaction>> trs;
+public:
 	void MakeTransaction(unique_ptr<Product>& pr, Seller& s, Buyer& b) {
-		trs.push_back(make_unique<Transaction>(pr->Name, pr->Price, s, b));
+		trs.push_back(make_unique<Transaction>(pr->GetName(), pr->GetPrice(), s, b));
 		b.AddPurchase(move(pr));
 	}
 };

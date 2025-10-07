@@ -14,15 +14,20 @@ Online Marketplace
 - Payments are held until delivery is confirmed.
 */
 class Product {
-public:
 	string Name;
 	float Price;
 	Seller& slr;
+public:
 	Product(string& n, float p, Seller& s) : Name(n),Price(p),slr(s) {}
 	void Info() {
 		cout << Name << "\n" << Price << "\n";
 	}
-};
+    string GetName() const { return Name; }
+    void SetName(string& n) { Name = n; }
+    float GetPrice() const { return Price; }
+    void SetPrice(float n) { Price = n; }
+    Seller GetSeller() const { return slr; }
+ };
 
 class Escrow {
     float balance;
@@ -54,40 +59,47 @@ public:
             cout << "No funds to refund." << endl;
         }
     }
+    float Getbalance() const { return balance; }
+    void Setbalance(float n) { balance = n; }
+    bool Getreleased() const { return released; }
+    void Setreleased(bool n) { released = n; }
 };
 
 class Buyer {
-public:
 	string Name;
-	Buyer(string& n) : Name(n) {}
 	vector<unique_ptr<Product>> purchs;
+public:
+	Buyer(string& n) : Name(n) {}
 	void Buy(unique_ptr<Product>&& p, Escrow& escrow) {
 		purchs.push_back(move(p));
-        escrow.Hold(p->Price);
+        escrow.Hold(p->GetPrice());
 	}
     void DeliveryConfirm(Escrow& escrow) {
         cout << "Delivery is done\n";
         escrow.Release();
     }
-
+    string GetName() const { return Name; }
+    void SetName(string& n) { Name = n; }
 };
 
 class Seller {
-public:
 	string Name;
+public:
 	Seller(string& n) : Name(n) {}
+    string GetName() const { return Name; }
+    void SetName(string n) { Name = n; }
 };
 
 class Marketplace {
-public:
 	vector<unique_ptr<Product>> prds;
+public:
 	void AddProduct(Seller& s, string& n, float p) {
 		prds.push_back(make_unique<Product>(n, p, s));
 	}
     void displayAllProducts() {
         for (auto& p : prds) {
             p->Info();
-            cout << "Seller Name: " << p->slr.Name << "\n";
+            cout << "Seller Name: " << p->GetSeller().GetName() << "\n";
         }
     }
 };

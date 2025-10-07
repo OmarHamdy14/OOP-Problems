@@ -20,9 +20,9 @@ class RunWay {
 public:
 	RunWay(string& f, string& t,bool i) : from(f),to(t),IsTaken(i) {}
 	string GetFrom() const { return from; }
-	void SetFrom(string n) { from = n; }
+	void SetFrom(string& n) { from = n; }
 	string GetTo() const { return to; }
-	void SetTo(string n) { to = n; }
+	void SetTo(string& n) { to = n; }
 	bool GetIsTaken() const { return IsTaken; }
 	void SetIsTaken(bool n) { IsTaken = n; }
 };

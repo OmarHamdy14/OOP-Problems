@@ -32,13 +32,11 @@ public:
 	string GetName() const { return Name; }
 	void SetName(string n) { Name = n; }
 	string GetContent() const { return Content; }
-	void SetContent(string n) { Content = n; }
+	void SetContent(string& n) { Content = n; }
 	Status Getst() const { return st; }
 	void Setst(Status n) { st = n; }
 	Reviewer& GetReviewer() const { return rvw; }
-	void SetReviewer(Reviewer& n) { rvw = n; }  // ???????????
 	Approver& GetApprover() const { return apv; }
-	void SetApprover(Approver& n) { apv = n; }  // ???????????
 };
 
 class TasksHistory {
@@ -55,10 +53,10 @@ class Admin {
 public:
 	Admin(string& n, TasksHistory& th) : Name(n),th(th) {}
 	void pushTaskToApprover(unique_ptr<Task>&& tsk) {
-		tsk->rvw.AddTask(move(tsk));
+		tsk->GetReviewer().AddTask(move(tsk));
 	}
 	string GetName() const { return Name; }
-	void SetName(string n) { Name = n; }
+	void SetName(string& n) { Name = n; }
 };
 
 class Reviewer {
@@ -71,7 +69,7 @@ public:
 		tsks.push_back(move(t));
 	}
 	void ApproveTask(unique_ptr<Task>&& t) {
-		t->apv.AddTask(move(t));
+		t->GetApprover().AddTask(move(t));
 	}
 	void RejectTask(unique_ptr<Task>& t) {
 		t->Setst(Rejected);
@@ -83,7 +81,7 @@ public:
 		}
 	}
 	string GetName() const { return Name; }
-	void SetName(string n) { Name = n; }
+	void SetName(string& n) { Name = n; }
 };
 
 class Approver {
@@ -109,5 +107,5 @@ public:
 		}
 	}
 	string GetName() const { return Name; }
-	void SetName(string n) { Name = n; }
+	void SetName(string& n) { Name = n; }
 };

@@ -14,32 +14,37 @@ E-Learning Platform
 - System tracks progress and generates certificates.
 */
 class Course {
-public:
 	string Name;
+public:
 	Course(string& n) : Name(n) {}
+	string GetName() const { return Name; }
+	void SetName(string& n) { Name = n; }
 };
 
 class Student {
-public:
 	string Name;
 	vector<shared_ptr<Course>> cors;
+public:
 	void EnrollCourse(shared_ptr<Course>& c) {
 		cors.push_back(c);
 	}
+	string GetName() const { return Name; }
+	void SetName(string& n) { Name = n; }
 };
 
 class Teacher {
-public:
 	System& sys;
+public:
 	Teacher(System& s) : sys(s) {}
 	void CreateCourse(string& n) {
 		sys.AddCourse(make_shared<Course>(n));
 	}
+	System GetSystem() const { return sys; }
 };
 
 class System {
-public:
 	vector<shared_ptr<Course>> crs;
+public:
 	void AddCourse(shared_ptr<Course> c) {
 		crs.push_back(c);
 	}

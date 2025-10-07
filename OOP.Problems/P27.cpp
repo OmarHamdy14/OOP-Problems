@@ -21,7 +21,7 @@ public:
 		cout << Name << "\n";
 	}
 	string GetName() const { return Name; }
-	void SetName(string n) { Name = n; }
+	void SetName(string& n) { Name = n; }
 };
 
 class Channel {
@@ -34,7 +34,7 @@ public:
 	}
 	void WatchVideo() {}
 	string GetName() const { return Name; }
-	void SetName(string n) { Name = n; }
+	void SetName(string& n) { Name = n; }
 };
 
 struct VideoData {

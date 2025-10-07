@@ -22,7 +22,7 @@ public:
 	virtual void Sleep() = 0;
 	virtual void makeSound() = 0;
 	virtual string GetName() const = 0;
-	virtual void SetName(string n) = 0;
+	virtual void SetName(string& n) = 0;
 };
 class Lion : public Animal {
 public:
@@ -31,7 +31,7 @@ public:
 	void Sleep() { cout << "Lion Sleeping\n"; }
 	void MakeSound() { cout << "Lion Sound\n"; }
 	string GetName() const override { return Name; }
-	void SetName(string n) override { Name = n; }
+	void SetName(string& n) override { Name = n; }
 };
 class Tiger : public Animal {
 public:
@@ -40,7 +40,7 @@ public:
 	void Sleep() { cout << "Tiger Sleeping\n"; }
 	void MakeSound() { cout << "Tiger Sound\n"; }
 	string GetName() const override { return Name; }
-	void SetName(string n) override { Name = n; }
+	void SetName(string& n) override { Name = n; }
 };
 class Giraffe : public Animal {
 public:
@@ -49,7 +49,7 @@ public:
 	void Sleep() { cout << "Giraffe Sleeping\n"; }
 	void MakeSound() { cout << "Giraffe Sound\n"; }
 	string GetName() const override { return Name; }
-	void SetName(string n) override { Name = n; }
+	void SetName(string& n) override { Name = n; }
 };
 
 class Zoo {

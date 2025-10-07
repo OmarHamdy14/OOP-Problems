@@ -26,7 +26,7 @@ public:
 	Device(string& n,Mode m) : Name(n),mode(m) {}
 	virtual void Intro() = 0;
 	virtual string GetName() const = 0;
-	virtual void SetName(string n) = 0;
+	virtual void SetName(string& n) = 0;
 	virtual Mode GetMode() const = 0;
 	virtual void SetMode(Mode n) = 0;
 };
@@ -37,7 +37,7 @@ public:
 		cout << "Light\n";
 	}
 	string GetName() const override { return Name; }
-	void SetName(string n) override { Name = n; }
+	void SetName(string& n) override { Name = n; }
 	Mode GetMode() const override { return mode; }
 	void SetMode(Mode n) override { mode = n; }
 };
@@ -48,7 +48,7 @@ public:
 		cout << "AC\n";
 	}
 	string GetName() const override { return Name; }
-	void SetName(string n) override { Name = n; }
+	void SetName(string& n) override { Name = n; }
 	Mode GetMode() const override { return mode; }
 	void SetMode(Mode n) override { mode = n; }
 };
@@ -59,7 +59,7 @@ public:
 		cout << "Camera\n";
 	}
 	string GetName() const override { return Name; }
-	void SetName(string n) override { Name = n; }
+	void SetName(string& n) override { Name = n; }
 	Mode GetMode() const override { return mode; }
 	void SetMode(Mode n) override { mode = n; }
 };

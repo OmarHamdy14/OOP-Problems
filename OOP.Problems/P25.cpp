@@ -21,18 +21,18 @@ public:
 	User(string& n,string& pn) : Name(n),PhoneNumber(pn) {}
 	virtual void Info() = 0;
 	virtual string GetName() const = 0;
-	virtual void SetName(string n) = 0;
+	virtual void SetName(string& n) = 0;
 	virtual string GetPhoneNumber() const = 0;
-	virtual void SetPhoneNumber(string n) = 0;
+	virtual void SetPhoneNumber(string& n) = 0;
 };
 class Passenger : public User {
 public:
 	Passenger(string& n,string& pn) : User(n,pn) {}
 	void Info() override { cout << "I'm Passenger\n"; }
 	string GetName() const override { return Name; }
-	void SetName(string n) override { Name = n; }
+	void SetName(string& n) override { Name = n; }
 	string GetPhoneNumber() const override { return PhoneNumber; }
-	void SetPhoneNumber(string n) override { PhoneNumber = n; }
+	void SetPhoneNumber(string& n) override { PhoneNumber = n; }
 };
 class Driver : public User {
 public:
@@ -41,9 +41,9 @@ public:
 		cout << "I'm Driver\n";
 	}
 	string GetName() const override { return Name; }
-	void SetName(string n) override { Name = n; }
+	void SetName(string& n) override { Name = n; }
 	string GetPhoneNumber() const override { return PhoneNumber; }
-	void SetPhoneNumber(string n) override { PhoneNumber = n; }
+	void SetPhoneNumber(string& n) override { PhoneNumber = n; }
 };
 
 class Trip {
@@ -58,9 +58,9 @@ public:
 		cout << From << "---------->" << To << "\n" << drv->Name << "\n" << psg->Name << "\n";
 	}
 	string GetFrom() const { return From; }
-	void SetFrom(string n) { From = n; }
+	void SetFrom(string& n) { From = n; }
 	string GetTo() const { return To; }
-	void SetTo(string n) { To = n; }
+	void SetTo(string& n) { To = n; }
 	float Getrating() const { return rating; }
 	void Setrating(float n) { rating = n; }
 };

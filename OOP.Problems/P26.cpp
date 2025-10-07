@@ -22,7 +22,7 @@ public:
 		cout << "Product Name: " << Name << "\n" << "Price: " << Price << "\n";
 	}
 	string GetName() const { return Name; }
-	void SetName(string n) { Name = n; }
+	void SetName(string& n) { Name = n; }
 	float GetPrice() const { return Price; }
 	void SetPrice(float n) { Price = n; }
 };
@@ -40,7 +40,7 @@ public:
 		}
 	}
 	string GetName() const { return Name; }
-	void SetName(string n) { Name = n; }
+	void SetName(string& n) { Name = n; }
 };
 class Seller {
 	string Name;
@@ -55,7 +55,7 @@ public:
 		}
 	}
 	string GetName() const { return Name; }
-	void SetName(string n) { Name = n; }
+	void SetName(string& n) { Name = n; }
 };
 
 class Transaction {
@@ -66,7 +66,7 @@ class Transaction {
 public:
 	Transaction(string& pn, float pd, Seller& sl, Buyer& by) : ProductName(pn),slr(sl),byr(by),Paid(pd) {}
 	string GetProductName() const { return ProductName; }
-	void SetProductName(string n) { ProductName = n; }
+	void SetProductName(string& n) { ProductName = n; }
 	float GetPaid() const { return Paid; }
 	void SetPaid(float n) { Paid = n; }
 };

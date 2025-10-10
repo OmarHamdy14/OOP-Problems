@@ -129,6 +129,9 @@
     <ClCompile Include="P35.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="P36.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OOP_P1.h">
@@ -240,6 +243,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="P35.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="P36.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

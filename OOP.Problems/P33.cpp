@@ -18,12 +18,12 @@ Tournament Engine (Esports)
 class Team {
 	string Name;
 public:
-	Team(string& n) : Name(n) {}
-	void RegisterToMatch(Match& m) {
+	Team(const string& n) : Name(n) {}
+	void RegisterToMatch(const Match& m) {
 
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };
 
 class Match {
@@ -31,7 +31,7 @@ class Match {
 	vector<shared_ptr<Team>> tms;
 	Round& rnd;
 public:
-	Match(Round& r, int n) : num(n), rnd(r) {}
+	Match(const Round& r, int n) : num(n), rnd(r) {}
 	void Play() {
 		int hlp = 0, idx = 0;
 		for (int i = 0; i < tms.size(); i++) {
@@ -42,7 +42,7 @@ public:
 	}
 	int Getnum() const { return num; }
 	void Setnum(int n) { num = n; }
-	Round GetRound() const { return rnd; }
+	const Round& GetRound() const { return rnd; }
 };
 
 class Round {
@@ -50,12 +50,12 @@ class Round {
 	vector<unique_ptr<Match>> mtchs;
 	Tournament& trm;
 public:
-	Round(Tournament& t, string& n) : Name(n), trm(r) {}
+	Round(const Tournament& t, const string& n) : Name(n), trm(r) {}
 	void AddMatch() {
 
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 	Tournament GetTournament() const { return trm; }
 };
 
@@ -64,13 +64,13 @@ class Tournament {
 	vector<shared_ptr<Team>> tms;
 	vector<unique_ptr<Round>> rnds;
 public:
-	Tournament(string& n) : Name(n) {}
-	void RegisterToTournament(Match& m) {
+	Tournament(const string& n) : Name(n) {}
+	void RegisterToTournament(const Match& m) {
 
 	}
 	void AddRound(unique_ptr<Round>&& r) {
 
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };

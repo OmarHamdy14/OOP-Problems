@@ -18,15 +18,15 @@ class Product {
 	float Price;
 	Seller& slr;
 public:
-	Product(string& n, float p, Seller& s) : Name(n),Price(p),slr(s) {}
+	Product(const string& n, float p, const Seller& s) : Name(n),Price(p),slr(s) {}
 	void Info() {
 		cout << Name << "\n" << Price << "\n";
 	}
-    string GetName() const { return Name; }
-    void SetName(string& n) { Name = n; }
+    const string& GetName() const { return Name; }
+    void SetName(const string& n) { Name = n; }
     float GetPrice() const { return Price; }
     void SetPrice(float n) { Price = n; }
-    Seller GetSeller() const { return slr; }
+    const Seller GetSeller() const { return slr; }
  };
 
 class Escrow {
@@ -69,8 +69,8 @@ class Buyer {
 	string Name;
 	vector<unique_ptr<Product>> purchs;
 public:
-	Buyer(string& n) : Name(n) {}
-	void Buy(unique_ptr<Product>&& p, Escrow& escrow) {
+	Buyer(const string& n) : Name(n) {}
+	void Buy(unique_ptr<Product>&& p, Escrow& escrow) {  // why when i put " const " before " Escrow& escrow ", this gives me error ??? 
 		purchs.push_back(move(p));
         escrow.Hold(p->GetPrice());
 	}
@@ -85,15 +85,15 @@ public:
 class Seller {
 	string Name;
 public:
-	Seller(string& n) : Name(n) {}
-    string GetName() const { return Name; }
-    void SetName(string n) { Name = n; }
+	Seller(const string& n) : Name(n) {}
+    const string& GetName() const { return Name; }
+    void SetName(const string& n) { Name = n; }
 };
 
 class Marketplace {
 	vector<unique_ptr<Product>> prds;
 public:
-	void AddProduct(Seller& s, string& n, float p) {
+	void AddProduct(const Seller& s, const string& n, float p) {
 		prds.push_back(make_unique<Product>(n, p, s));
 	}
     void displayAllProducts() {

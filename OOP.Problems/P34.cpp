@@ -19,12 +19,12 @@ class Stock {
 	string Symbol;
 	float Price;
 public:
-	Stock(string& s,float p) : Symbol(s),Price(p) {}
+	Stock(const string& s,float p) : Symbol(s),Price(p) {}
 	void Info() {
 		cout << Symbol << " " << Price << "\n";
 	}
-	string GetSymbol() const { return Symbol; }
-	void SetSymbol(string& n) { Symbol = n; }
+	const string& GetSymbol() const { return Symbol; }
+	void SetSymbol(const string& n) { Symbol = n; }
 	float GetPrice() const { return Price; }
 	void SetPrice(float n) { Price = n; }
 };
@@ -34,8 +34,8 @@ class Player {
 	float Balance;
 	map<string, float> OwnStocks;
 public:
-	Player(string& n, float b) : Name(n),Balance(b) {}
-	void Buy(Stock& st, int quantity) {
+	Player(const string& n, float b) : Name(n),Balance(b) {}
+	void Buy(const Stock& st, int quantity) {
 		float cost = quantity * st.GetPrice();
 		if (Balance >= cost) {
 			OwnStocks[st.GetSymbol()] += quantity;
@@ -45,7 +45,7 @@ public:
 			cout << Name << " does not have enough balance." << endl;
 		}
 	}
-	void Sell(Stock& st, int quantity) {
+	void Sell(const Stock& st, int quantity) {
 		if (OwnStocks[st.GetSymbol()] >= quantity) {
 			Balance += st.GetPrice() * quantity;
 			OwnStocks[st.GetSymbol()] -= quantity;
@@ -54,8 +54,8 @@ public:
 			cout << Name << " does not own enough shares." << endl;
 		}
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 	float GetBalance() const { return Balance; }
 	void SetBalance(float n) { Balance = n; }
 };

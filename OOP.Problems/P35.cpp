@@ -20,10 +20,10 @@ class Utility {
 	City* ct;
 	bool HasProblem = false;	
 public:
-	Utility(string& n, City* c) : Name(n),ct(c) {}
+	Utility(const string& n, City* c) : Name(n),ct(c) {}
 	void Info() { cout << Name << " " << ct->GetName() << "\n"; }
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 	bool GetHasProblem() const { return HasProblem; }
 	void DoEvent() { HasProblem = !HasProblem; }
 };
@@ -33,13 +33,13 @@ class Building {
 	int Num;
 	Road* rod;
 public:
-	Building(string& d, int n, Road* r) : Describtion(d),Num(n),rod(r) {}
+	Building(const string& d, int n, Road* r) : Describtion(d),Num(n),rod(r) {}
 	void Info() { cout << Describtion << " " << Num << "\n"; }
-	string GetDescribtion() const { return Describtion; }
-	void SetDescribtion(string& n) { Describtion = n; }
+	const string& GetDescribtion() const { return Describtion; }
+	void SetDescribtion(const string& n) { Describtion = n; }
 	int GetNum() const { return Num; }
 	void SetNum(int n) { Num = n; }
-	string GetRoad() const { return rod->GetFulldDesc(); }
+	const string& GetRoad() const { return rod->GetFulldDesc(); }
 };
 
 class Road {
@@ -48,8 +48,8 @@ class Road {
 	bool HasTrafficJam = false;
 	vector<unique_ptr<Building>> blds;
 public:
-	 Road(string& n, City* c) : FulldDesc(n),ct(c) {}
-	 void AddBuilding(string& d, int n) {
+	 Road(const string& n, City* c) : FulldDesc(n),ct(c) {}
+	 void AddBuilding(const string& d, int n) {
 		 blds.push_back(make_unique<Building>(d, n, this));
 	 }
 	 void DisplayAllBuildings() {
@@ -58,9 +58,9 @@ public:
 		 }
 	 }
 	 void Info() { cout << FulldDesc << " " << ct->GetName() << "\n"; }
-	 string GetFulldDesc() const { return FulldDesc; }
-	 void SetFulldDesc(string& n) { FulldDesc = n; }
-	 string GetCity() const { return ct->GetName(); }
+	 const string& GetFulldDesc() const { return FulldDesc; }
+	 void SetFulldDesc(const string& n) { FulldDesc = n; }
+	 const string& GetCity() const { return ct->GetName(); }
 	 bool GetHasTrafficJam() const { return HasTrafficJam; }
 	 void DoEvent() { HasTrafficJam = !HasTrafficJam; }
 };
@@ -70,13 +70,13 @@ class City {
 	vector<Road> rods;
 	vector<Utility> utls;
 public:
-	City(string& n) : Name(n) {}
+	City(const string& n) : Name(n) {}
 	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
-	void AddRoad(string& n) {
+	void SetName(const string& n) { Name = n; }
+	void AddRoad(const string& n) {
 		rods.push_back(Road(n, this));
 	}
-	void AddUtility(string& n) {
+	void AddUtility(const string& n) {
 		utls.push_back(Utility(n, this));
 	}
 	void DisplayAllRoads() {

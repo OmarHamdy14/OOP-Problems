@@ -29,7 +29,7 @@ public:
 class Match {
 	int num;
 	vector<shared_ptr<Team>> tms;
-	Round& rnd;
+	const Round& rnd;
 public:
 	Match(const Round& r, int n) : num(n), rnd(r) {}
 	void Play() {
@@ -48,9 +48,9 @@ public:
 class Round {
 	string Name;
 	vector<unique_ptr<Match>> mtchs;
-	Tournament& trm;
+	const Tournament& trm;
 public:
-	Round(const Tournament& t, const string& n) : Name(n), trm(r) {}
+	Round(const Tournament& t, const string& n) : Name(n), trm(t) {}
 	void AddMatch() {
 
 	}

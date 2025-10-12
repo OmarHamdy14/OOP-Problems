@@ -16,9 +16,9 @@ E-Learning Platform
 class Course {
 	string Name;
 public:
-	Course(string& n) : Name(n) {}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	Course(const string& n) : Name(n) {}
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };
 
 class Student {
@@ -28,18 +28,18 @@ public:
 	void EnrollCourse(shared_ptr<Course>& c) {
 		cors.push_back(c);
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };
 
 class Teacher {
 	System& sys;
 public:
-	Teacher(System& s) : sys(s) {}
-	void CreateCourse(string& n) {
+	Teacher(const System& s) : sys(s) {}      // ???
+	void CreateCourse(const string& n) {
 		sys.AddCourse(make_shared<Course>(n));
 	}
-	System GetSystem() const { return sys; }
+	const System& GetSystem() const { return sys; }
 };
 
 class System {

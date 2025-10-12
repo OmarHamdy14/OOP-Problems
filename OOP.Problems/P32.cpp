@@ -16,7 +16,7 @@ Online Marketplace
 class Product {
 	string Name;
 	float Price;
-	Seller& slr;
+	const Seller& slr;
 public:
 	Product(const string& n, float p, const Seller& s) : Name(n),Price(p),slr(s) {}
 	void Info() {

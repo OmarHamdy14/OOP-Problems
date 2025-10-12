@@ -22,21 +22,21 @@ class Task {
 	string Name;
 	string Content;
 	Status st;
-	Reviewer& rvw;
-	Approver& apv;
+	const Reviewer& rvw;
+	const Approver& apv;
 public:
-	Task(string& n, string& c,Status s, Approver& a, Reviewer& r) : Name(n),Content(c),st(s),apv(a),rvw(r) {}
+	Task(const string& n, const string& c,const Status& s, const Approver& a, const Reviewer& r) : Name(n),Content(c),st(s),apv(a),rvw(r) {}
 	void Info() {
 		cout << Name << "\n" << Content << "\n-----------\n";
 	}
-	string GetName() const { return Name; }
-	void SetName(string n) { Name = n; }
-	string GetContent() const { return Content; }
-	void SetContent(string& n) { Content = n; }
-	Status Getst() const { return st; }
-	void Setst(Status n) { st = n; }
-	Reviewer& GetReviewer() const { return rvw; }
-	Approver& GetApprover() const { return apv; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
+	const string& GetContent() const { return Content; }
+	void SetContent(const string& n) { Content = n; }
+	const Status& Getst() const { return st; }
+	void Setst(const Status& n) { st = n; }
+	const Reviewer& GetReviewer() const { return rvw; }
+	const Approver& GetApprover() const { return apv; }
 };
 
 class TasksHistory {
@@ -51,12 +51,12 @@ class Admin {
 	string Name;
 	TasksHistory& th;
 public:
-	Admin(string& n, TasksHistory& th) : Name(n),th(th) {}
-	void pushTaskToApprover(unique_ptr<Task>&& tsk) {
-		tsk->GetReviewer().AddTask(move(tsk));
+	Admin(const string& n, TasksHistory& th) : Name(n),th(th) {}
+	void pushTaskToApprover(unique_ptr<Task>& tsk) {
+		tsk->GetReviewer().AddTask(move(tsk));  // ???
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };
 
 class Reviewer {
@@ -64,7 +64,7 @@ class Reviewer {
 	TasksHistory& th;
 	vector<unique_ptr<Task>> tsks;
 public:
-	Reviewer(string& n, TasksHistory& th) : Name(n), th(th) {}
+	Reviewer(const string& n, TasksHistory& th) : Name(n), th(th) {}
 	void AddTask(unique_ptr<Task>&& t) {
 		tsks.push_back(move(t));
 	}
@@ -80,8 +80,8 @@ public:
 			t->Info();
 		}
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };
 
 class Approver {
@@ -89,7 +89,7 @@ class Approver {
 	vector<unique_ptr<Task>> tsks;
 	TasksHistory& th;
 public:
-	Approver(string& n, TasksHistory& th) : Name(n), th(th) {}
+	Approver(const string& n, TasksHistory& th) : Name(n), th(th) {}
 	void AddTask(unique_ptr<Task>&& t) {
 		tsks.push_back(move(t));
 	}
@@ -106,6 +106,6 @@ public:
 			t->Info();
 		}
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };

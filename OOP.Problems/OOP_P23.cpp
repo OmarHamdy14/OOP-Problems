@@ -16,9 +16,9 @@ Music Playlist
 class Song {
 	string Name;
 public:
-	Song(string& n) : Name(n) {}
-	string GetName() const { return Name; }
-	void SetName(string n) { Name = n; }
+	Song(const string& n) : Name(n) {}
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };
 
 enum Mode {
@@ -30,12 +30,12 @@ class Playlist {
 	Mode mode;
 	vector<shared_ptr<Song>> Songs;
 public:
-	Playlist(string& n, Mode m) : Name(n),mode(m) {}
+	Playlist(const string& n, Mode m) : Name(n),mode(m) {}
 	void AddSong(shared_ptr<Song>& sg) {
 		Songs.push_back(sg);
 	}
-	string GetName() const { return Name; }
-	void SetName(string n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 	Mode GetMode() const { return mode; }
 	void SetMode(Mode n) { mode = n; }
 };

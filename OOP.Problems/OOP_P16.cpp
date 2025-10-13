@@ -35,7 +35,7 @@ public:
         return balance;
     }
 
-    string GetAccountNumber() const {
+    const string& GetAccountNumber() const {
         return accountNumber;
     }
 };

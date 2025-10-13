@@ -30,14 +30,14 @@ class Task {
 	Status status = NotStarted;
 	Priority priority;
 public:
-	Task(string n, string c,Priority p) : Name(n),Content(c),priority(p) {}
+	Task(const string& n, const string& c,Priority p) : Name(n),Content(c),priority(p) {}
 	void DisplayInfo() {
 		cout << "Task Name: " << Name << "\n" << "Task Content: " << Content << "\n" << "Task Staus: " << status << "\n" << "Task Priority: " << priority << "\n";
 	}
-	string GetName() const { return Name; }
-	void SetName(string n) { Name = n; }
-	string GetContent() const { return Content; }
-	void SetContent(string& n) { Content = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
+	const string& GetContent() const { return Content; }
+	void SetContent(const string& n) { Content = n; }
 	Status Getstatus() const { return status; }
 	void Setstatus(Status n) { status = n; }
 	Priority Getpriority() const { return priority; }
@@ -50,7 +50,7 @@ public:
 	void AddTask(unique_ptr<Task>&& t) {
 		Tasks.push_back(move(t));
 	}
-	void AddTask_2(string n, string c,Priority p) {
+	void AddTask_2(const string& n, const string& c,Priority p) {
 		Tasks.push_back(make_unique<Task>(n,c,p));
 	}
 	void StartTask(unique_ptr<Task>& t) {

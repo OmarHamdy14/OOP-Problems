@@ -17,39 +17,39 @@ class Animal {
 protected:
 	string Name;
 public:
-	Animal(string& s) : Name(s) {}
+	Animal(const string& s) : Name(s) {}
 	virtual void Eat() = 0;
 	virtual void Sleep() = 0;
 	virtual void makeSound() = 0;
-	virtual string GetName() const = 0;
-	virtual void SetName(string& n) = 0;
+	virtual const string& GetName() const = 0;
+	virtual void SetName(const string& n) = 0;
 };
 class Lion : public Animal {
 public:
-	Lion(string& n) : Animal(n) {}
+	Lion(const string& n) : Animal(n) {}
 	void Eat() { cout << "Lion Eating\n"; }
 	void Sleep() { cout << "Lion Sleeping\n"; }
 	void MakeSound() { cout << "Lion Sound\n"; }
-	string GetName() const override { return Name; }
-	void SetName(string& n) override { Name = n; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& n) override { Name = n; }
 };
 class Tiger : public Animal {
 public:
-	Tiger(string& n) : Animal(n) {}
+	Tiger(const string& n) : Animal(n) {}
 	void Eat() { cout << "Tiger Eating\n"; }
 	void Sleep() { cout << "Tiger Sleeping\n"; }
 	void MakeSound() { cout << "Tiger Sound\n"; }
-	string GetName() const override { return Name; }
-	void SetName(string& n) override { Name = n; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& n) override { Name = n; }
 };
 class Giraffe : public Animal {
 public:
-	Giraffe(string& n) : Animal(n) {}
+	Giraffe(const string& n) : Animal(n) {}
 	void Eat() { cout << "Giraffe Eating\n"; }
 	void Sleep() { cout << "Giraffe Sleeping\n"; }
 	void MakeSound() { cout << "Giraffe Sound\n"; }
-	string GetName() const override { return Name; }
-	void SetName(string& n) override { Name = n; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& n) override { Name = n; }
 };
 
 class Zoo {

@@ -18,32 +18,32 @@ protected:
 	string Name;
 	string PhoneNumber;
 public:
-	User(string& n,string& pn) : Name(n),PhoneNumber(pn) {}
+	User(const string& n, const string& pn) : Name(n),PhoneNumber(pn) {}
 	virtual void Info() = 0;
-	virtual string GetName() const = 0;
-	virtual void SetName(string& n) = 0;
-	virtual string GetPhoneNumber() const = 0;
-	virtual void SetPhoneNumber(string& n) = 0;
+	virtual const string& GetName() const = 0;
+	virtual void SetName(const string& n) = 0;
+	virtual const string& GetPhoneNumber() const = 0;
+	virtual void SetPhoneNumber(const string& n) = 0;
 };
 class Passenger : public User {
 public:
-	Passenger(string& n,string& pn) : User(n,pn) {}
+	Passenger(const string& n, const string& pn) : User(n,pn) {}
 	void Info() override { cout << "I'm Passenger\n"; }
-	string GetName() const override { return Name; }
-	void SetName(string& n) override { Name = n; }
-	string GetPhoneNumber() const override { return PhoneNumber; }
-	void SetPhoneNumber(string& n) override { PhoneNumber = n; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& n) override { Name = n; }
+	const string& GetPhoneNumber() const override { return PhoneNumber; }
+	void SetPhoneNumber(const string& n) override { PhoneNumber = n; }
 };
 class Driver : public User {
 public:
-	Driver(string& n, string& pn) : User(n, pn) {}
+	Driver(const string& n, const string& pn) : User(n, pn) {}
 	void Info() override {
 		cout << "I'm Driver\n";
 	}
-	string GetName() const override { return Name; }
-	void SetName(string& n) override { Name = n; }
-	string GetPhoneNumber() const override { return PhoneNumber; }
-	void SetPhoneNumber(string& n) override { PhoneNumber = n; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& n) override { Name = n; }
+	const string& GetPhoneNumber() const override { return PhoneNumber; }
+	void SetPhoneNumber(const string& n) override { PhoneNumber = n; }
 };
 
 class Trip {
@@ -53,14 +53,14 @@ class Trip {
 	shared_ptr<Driver> drv;
 	shared_ptr<Passenger> psg;
 public:
-	Trip(string& f, string& t,float rt, shared_ptr<Driver>& drv, shared_ptr<Passenger>& psg) : From(f),To(t),rating(rt),drv(drv),psg(psg) {}
+	Trip(const string& f, const string& t,float rt, shared_ptr<Driver>& drv, shared_ptr<Passenger>& psg) : From(f),To(t),rating(rt),drv(drv),psg(psg) {}
 	void Info() {
-		cout << From << "---------->" << To << "\n" << drv->Name << "\n" << psg->Name << "\n";
+		cout << From << "---------->" << To << "\n" << drv->GetName() << "\n" << psg->GetName() << "\n";
 	}
-	string GetFrom() const { return From; }
-	void SetFrom(string& n) { From = n; }
-	string GetTo() const { return To; }
-	void SetTo(string& n) { To = n; }
+	const string& GetFrom() const { return From; }
+	void SetFrom(const string& n) { From = n; }
+	const string& GetTo() const { return To; }
+	void SetTo(const string& n) { To = n; }
 	float Getrating() const { return rating; }
 	void Setrating(float n) { rating = n; }
 };
@@ -68,7 +68,7 @@ public:
 class Platform {
 	vector<unique_ptr<Trip>> trps;
 public:
-	void AddTrip(string& f, string& t, shared_ptr<Driver>& dv, shared_ptr<Passenger>& pg) {
+	void AddTrip(const string& f, const string& t, shared_ptr<Driver>& dv, shared_ptr<Passenger>& pg) {
 		trps.push_back(make_unique<Trip>(f, t, 0, dv, pg));
 	}
 	void RateTrip(float rt, unique_ptr<Trip>& tp) {

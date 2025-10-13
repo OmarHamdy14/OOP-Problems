@@ -16,12 +16,12 @@ Video Streaming Service
 class Video {
 	string Name;
 public:
-	Video(string& n) : Name(n) {}
+	Video(const string& n) : Name(n) {}
 	void Info() {
 		cout << Name << "\n";
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };
 
 class Channel {
@@ -29,12 +29,12 @@ class Channel {
 	vector<unique_ptr<Video>> OwnVds;
 	WatchHistory WH;
 public:
-	void AddVideo(string& n) {
+	void AddVideo(const string& n) {
 		OwnVds.push_back(make_unique<Video>(n));
 	}
 	void WatchVideo() {}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };
 
 struct VideoData {
@@ -53,7 +53,7 @@ public:
 class VideoPlatform {
 	vector<unique_ptr<Channel>> Chs;
 public:
-	void AddChannel(string& n) {
+	void AddChannel(const string& n) {
 		Chs.push_back(make_unique<Channel>(n));
 	}
 	void PlayVideo() {

@@ -20,62 +20,62 @@ protected:
 	int QNum;
 	string TrueAnswer;
 public:
-	Question(string& c,int m, int qn,string& TA) : Content(c),Marks(m),QNum(qn),TrueAnswer(TA) {}
+	Question(const string& c,int m, int qn, const string& TA) : Content(c),Marks(m),QNum(qn),TrueAnswer(TA) {}
 	virtual void Display() = 0;
-	virtual string GetContent() const = 0;
-	virtual void SetContent(string& n) = 0;
+	virtual const string& GetContent() const = 0;
+	virtual void SetContent(const string& n) = 0;
 	virtual int GetMarks() const = 0;
 	virtual void SetMarks(int n) = 0;
 	virtual int GetQNum() const = 0;
 	virtual void SetQNum(int n) = 0;
-	virtual string GetTrueAnswer() const = 0;
-	virtual void SetTrueAnswer(string& n) = 0;
+	virtual const string& GetTrueAnswer() const = 0;
+	virtual void SetTrueAnswer(const string& n) = 0;
 };
 class MCQ : public Question {
 public:
 	vector<string> Options;
-	MCQ(string& c, int m, int qn, string TA) : Question(c, m, qn, TA) {}
+	MCQ(const string& c, int m, int qn, const string& TA) : Question(c, m, qn, TA) {}
 	void Display() override {
 		cout << Content << "\n" << Marks << "\n";
 	}
-	string GetContent() const override { return Content; }
-	void SetContent(string& n) override { Content = n; }
+	const string& GetContent() const override { return Content; }
+	void SetContent(const string& n) override { Content = n; }
 	int GetMarks() const override { return Marks; }
 	void SetMarks(int n) override { Marks = n; }
 	int GetQNum() const override { return QNum; }
 	void SetQNum(int n) override { QNum = n; }
-	string GetTrueAnswer() const override { return TrueAnswer; }
-	void SetTrueAnswer(string& n) override { TrueAnswer = n; }
+	const string& GetTrueAnswer() const override { return TrueAnswer; }
+	void SetTrueAnswer(const string& n) override { TrueAnswer = n; }
 };
 class TrueFalse : public Question {
 public:
-	TrueFalse(string& c, int m, int qn, string TA) : Question(c, m, qn, TA) {}
+	TrueFalse(const string& c, int m, int qn, const string& TA) : Question(c, m, qn, TA) {}
 	void Display() override {
 		cout << Content << "\n" << Marks << "\n";
 	}
-	string GetContent() const override { return Content; }
-	void SetContent(string& n) override { Content = n; }
+	const string& GetContent() const override { return Content; }
+	void SetContent(const string& n) override { Content = n; }
 	int GetMarks() const override { return Marks; }
 	void SetMarks(int n) override { Marks = n; }
 	int GetQNum() const override { return QNum; }
 	void SetQNum(int n) override { QNum = n; }
-	string GetTrueAnswer() const override { return TrueAnswer; }
-	void SetTrueAnswer(string& n) override { TrueAnswer = n; }
+	const string& GetTrueAnswer() const override { return TrueAnswer; }
+	void SetTrueAnswer(const string& n) override { TrueAnswer = n; }
 };
 class OpenEnded : public Question {
 public:
-	OpenEnded(string& c, int m, int qn, string TA) : Question(c, m, qn, TA) {}
+	OpenEnded(const string& c, int m, int qn, const string& TA) : Question(c, m, qn, TA) {}
 	void Display() override {
 		cout << Content << "\n" << Marks << "\n";
 	}
-	string GetContent() const override { return Content; }
-	void SetContent(string& n) override { Content = n; }
+	const string& GetContent() const override { return Content; }
+	void SetContent(const string& n) override { Content = n; }
 	int GetMarks() const override { return Marks; }
 	void SetMarks(int n) override { Marks = n; }
 	int GetQNum() const override { return QNum; }
 	void SetQNum(int n) override { QNum = n; }
-	string GetTrueAnswer() const override { return TrueAnswer; }
-	void SetTrueAnswer(string& n) override { TrueAnswer = n; }
+	const string& GetTrueAnswer() const override { return TrueAnswer; }
+	void SetTrueAnswer(const string& n) override { TrueAnswer = n; }
 };
 
 class Quiz {
@@ -88,8 +88,9 @@ class Student {
 	vector<shared_ptr<Quiz>> Quizzes;
 	int Score;
 public:
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	Student(const string& n, int s) : Name(n), Score(s) {}
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 	int GetScore() const { return Score; }
 	void SetScore(int n) { Score = n; }
 };

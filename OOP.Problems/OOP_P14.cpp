@@ -16,12 +16,12 @@ class Offer {
 	string Name;
 	double Price;
 public:
-	Offer(string& n,double p) : Name(n),Price(p) {}
+	Offer(const string& n,double p) : Name(n),Price(p) {}
 	void DisplayInfo() {
 		cout << Name << " " << Price << endl;
 	}
-	string GetName() const { return Name; }
-	void SetName(string& s) { Name = s; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& s) { Name = s; }
 	double GetPrice() const { return Price; }
 	void SetPrice(double p) { Price = p; }
 };
@@ -29,8 +29,8 @@ class Seller {
 	string Name;
 	vector<unique_ptr<Offer>> Offers;
 public:
-	Seller(string& N) : Name(N) {}
-	void CreateOffer(string& N, double P) {
+	Seller(const string& N) : Name(N) {}
+	void CreateOffer(const string& N, double P) {
 		Offers.push_back(make_unique<Offer>(N, P));
 	}
 	void DisplayAllOffers() {
@@ -39,28 +39,28 @@ public:
 			offer->DisplayInfo();
 		}
 	}
-	string GetName() const { return Name; }
-	void SetName(string& s) { Name = s; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& s) { Name = s; }
 };
 
 class Buyer {
 	string Name;
 	vector<unique_ptr<Offer>> Purchases;
 public:
-	Buyer(string& N) : Name(N) {}
+	Buyer(const string& N) : Name(N) {}
 	void AddPurchase(unique_ptr<Offer>&& of) {
 		Purchases.push_back(move(of));
 	}
-	string GetName() const { return Name; }
-	void SetName(string& s) { Name = s; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& s) { Name = s; }
 };
 
-class Transaction {
+class Transaction { // WHY using const here give me error ?
 	Seller& seller;
 	Buyer& buyer;
 	string OfferName;
 public:
-	Transaction(Seller& s, Buyer& b, unique_ptr<Offer>&& offer) : seller(s),buyer(b),OfferName(offer->GetName()) {
+	Transaction(const Seller& s, Buyer& b, unique_ptr<Offer>&& offer) : seller(s),buyer(b),OfferName(offer->GetName()) {
 		cout << "Seller Name: " << seller.GetName() << endl;
 		cout << "Offer Details: ";
 		offer->DisplayInfo();
@@ -73,13 +73,13 @@ public:
 class Marketplace {
 	string Name;
 public:
-	Marketplace(string& n) : Name(n) {}
+	Marketplace(const string& n) : Name(n) {}
 	vector<unique_ptr<Transaction>> Transactions;
 	void AddTransaction(unique_ptr<Transaction>&& tra) {
 		Transactions.push_back(move(tra));
 	}
-	string GetName() const { return Name; }
-	void SetName(string& s) { Name = s; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& s) { Name = s; }
 };
 
 

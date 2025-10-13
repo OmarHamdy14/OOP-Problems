@@ -15,9 +15,9 @@ Each segment should have unique behaviors and properties, and the system must ma
 class Event {
 	string Name;
 public:
-	Event(string& n) : Name(n) {}
-	string GetName() const { return Name; }
-	void SetName(string& s) { Name = s; }
+	Event(const string& n) : Name(n) {}
+	const string& GetName() const { return Name; }
+	void SetName(const string& s) { Name = s; }
 };
 
 class Segment {
@@ -26,53 +26,53 @@ protected:
 	double Price;
 	vector<shared_ptr<Event>> Events;
 public:
-	Segment(string& n,double p) : Name(n),Price(p) {}
+	Segment(const string& n,double p) : Name(n),Price(p) {}
 	virtual void Info() = 0;
 	virtual void AddEvent(shared_ptr<Event>& eve) = 0;
-	virtual string GetName() const = 0;
-	virtual void SetName(string& s) = 0;
+	virtual const string& GetName() const = 0;
+	virtual void SetName(const string& s) = 0;
 	virtual double GetPrice() const = 0;
 	virtual void SetPrice(double p) = 0;
 };
 class BusSegment : Segment {
 public:
-	BusSegment(string& n, double p) : Segment(n,p) {}
+	BusSegment(const string& n, double p) : Segment(n,p) {}
 	void Info() {
 		cout << "Bussss" << endl;
 	}
 	void AddEvent(shared_ptr<Event>& eve) {
 		Events.push_back(eve);
 	}
-	string GetName() const override { return Name; }
-	void SetName(string& s) override { Name = s; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& s) override { Name = s; }
 	double GetPrice() const override { return Price; }
 	void SetPrice(double p) override { Price = p; }
 };
 class WalkSegment : Segment {
 public:
-	WalkSegment(string& n, double p) : Segment(n, p) {}
+	WalkSegment(const string& n, double p) : Segment(n, p) {}
 	void Info() {
 		cout << "Walkkkkk" << endl;
 	}
 	void AddEvent(shared_ptr<Event>& eve) {
 		Events.push_back(eve);
 	}
-	string GetName() const override { return Name; }
-	void SetName(string& s) override { Name = s; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& s) override { Name = s; }
 	double GetPrice() const override { return Price; }
 	void SetPrice(double p) override { Price = p; }
 };
 class TrainSegment : Segment {
 public:
-	TrainSegment(string& n, double p) : Segment(n, p) {}
+	TrainSegment(const string& n, double p) : Segment(n, p) {}
 	void Info() {
 		cout << "Trainnnn" << endl;
 	}
 	void AddEvent(shared_ptr<Event>& eve) {
 		Events.push_back(eve);
 	}
-	string GetName() const override { return Name; }
-	void SetName(string& s) override { Name = s; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& s) override { Name = s; }
 	double GetPrice() const override { return Price; }
 	void SetPrice(double p) override { Price = p; }
 };
@@ -80,31 +80,31 @@ public:
 class Route {
 	string Name;
 public:
-	Route(string& n) : Name(n) {}
+	Route(const string& n) : Name(n) {}
 	vector<unique_ptr<Segment>> Segments;
 	void AddSegment(unique_ptr<Segment>&& seg) {
 		Segments.push_back(move(seg));
 	}
-	string GetName() const { return Name; }
-	void SetName(string& s) { Name = s; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& s) { Name = s; }
 };
 
 class Traveler {
 	string Name;
 	vector<Route> routes;
 public:
-	Traveler(string& n) : Name(n) {}
+	Traveler(const string& n) : Name(n) {}
 	void AddRoute(Route& rou) {
 		routes.push_back(rou);
 	}
-	string GetName() const { return Name; }
-	void SetName(string& s) { Name = s; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& s) { Name = s; }
 };
 // what is better using vector<Route> routes or vector<unique_ptr<Route>> routes ?? =======
 
 class SystemManager {
 public:
-	void CreateRoute(Traveler& trav,Route& rou) {
+	void CreateRoute(Traveler& trav,Route& rou) { // WHY I cannot put 'const' before 'Traveler' or 'Route' ?
 		trav.AddRoute(rou);
 	}
 	void AddBusSegmentToRoute(unique_ptr<Segment>&& seg, Route& rou) {

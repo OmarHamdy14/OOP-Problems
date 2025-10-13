@@ -17,12 +17,12 @@ class Product {
 	string Name;
 	float Price;
 public:
-	Product(string& n,float p) : Name(n),Price(p) {}
+	Product(const string& n,float p) : Name(n),Price(p) {}
 	void Info() {
 		cout << "Product Name: " << Name << "\n" << "Price: " << Price << "\n";
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 	float GetPrice() const { return Price; }
 	void SetPrice(float n) { Price = n; }
 };
@@ -39,14 +39,14 @@ public:
 			p->Info();
 		}
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };
 class Seller {
 	string Name;
 	vector<unique_ptr<Product>> Sales;
 public:
-	void AddSale(string& n, float pr) {
+	void AddSale(const string& n, float pr) {
 		Sales.push_back(make_unique<Product>(n,pr));
 	}
 	void DisplayAllSales() {
@@ -54,19 +54,19 @@ public:
 			s->Info();
 		}
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };
 
 class Transaction {
 	string ProductName;
 	float Paid;
-	Seller& slr;
-	Buyer& byr;
+	const Seller& slr;
+	const Buyer& byr;
 public:
-	Transaction(string& pn, float pd, Seller& sl, Buyer& by) : ProductName(pn),slr(sl),byr(by),Paid(pd) {}
-	string GetProductName() const { return ProductName; }
-	void SetProductName(string& n) { ProductName = n; }
+	Transaction(const string& pn, float pd, const Seller& sl, const Buyer& by) : ProductName(pn),slr(sl),byr(by),Paid(pd) {}
+	const string& GetProductName() const { return ProductName; }
+	void SetProductName(const string& n) { ProductName = n; }
 	float GetPaid() const { return Paid; }
 	void SetPaid(float n) { Paid = n; }
 };
@@ -74,7 +74,7 @@ public:
 class History {
 	vector<unique_ptr<Transaction>> trs;
 public:
-	void MakeTransaction(unique_ptr<Product>& pr, Seller& s, Buyer& b) {
+	void MakeTransaction(unique_ptr<Product>& pr, const Seller& s, Buyer& b) {
 		trs.push_back(make_unique<Transaction>(pr->GetName(), pr->GetPrice(), s, b));
 		b.AddPurchase(move(pr));
 	}

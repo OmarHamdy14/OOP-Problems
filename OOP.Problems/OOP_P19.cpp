@@ -18,24 +18,24 @@ class Book {
 	bool IsBorrowed = false;
 	time_t dueDate = 0;
 public:
-	Book(string& n,bool ib) : Name(n),IsBorrowed(ib) {}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	Book(const string& n,bool ib) : Name(n),IsBorrowed(ib) {}
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 	bool GetIsBorrowed() const { return IsBorrowed; }
 	void SetIsBorrowed(bool ib) { IsBorrowed = ib; }
-	time_t GetdueDate() const { return dueDate; }
+	time_t GetdueDate() const { return dueDate; } // should i use const & here ?
 	void SetdueDate(time_t t) { dueDate = t; }
 };
 class Person {
 	string Name;
 	vector<unique_ptr<Book>> BorrowedBooks;
 public:
-	Person(string& n) : Name(n) {}
+	Person(const string& n) : Name(n) {}
 	void AddBook(unique_ptr<Book>& book) {
 		BorrowedBooks.push_back(move(book));
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };
 class Library {
 	vector<unique_ptr<Book>> Books;

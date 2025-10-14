@@ -14,16 +14,16 @@ The same secondary objects should be reusable elsewhere.
 class Course {
     string name;
 public:
-    Course(string& name) : name(name) {}
-    string GetName() const { return name; }
-    void SetName(string& n) { name = n; }
+    Course(const string& name) : name(name) {}
+    const string& GetName() const { return name; }
+    void SetName(const string& n) { name = n; }
 };
 
 class Student {
     string name;
     vector<shared_ptr<Course>> Courses;
 public:
-    Student(string& name) : name(name){}
+    Student(const string& name) : name(name){}
 
     void AddCourse(shared_ptr<Course> crs) {
         Courses.push_back(crs);
@@ -36,6 +36,6 @@ public:
         }
     }
 
-    string GetName() const { return name; }
-    void SetName(string& n) { name = n; }
+    const string& GetName() const { return name; }
+    void SetName(const string& n) { name = n; }
 };

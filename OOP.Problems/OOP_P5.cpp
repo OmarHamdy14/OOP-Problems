@@ -22,7 +22,7 @@ class Average {
 	vector<int> numbers;
 	Helper& helper; // how to use "const" here ?
 public:
-	Average(Helper& hlp) {
+	Average(Helper& hlp) {       // why error here ??
 		helper = hlp;
 	}
 	void AddNum(int& x) { // will it make a copy if i dont use "&" ?

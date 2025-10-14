@@ -1,4 +1,3 @@
-#include "OOP_P2.h"
 #include <iostream>
 #include <string>
 #include <memory>
@@ -16,22 +15,22 @@ protected:
 	int Students_Num;
 	int Staff_Num;
 public:
-	Department(string n, int StudNum, int StafNum) {
+	Department(const string& n, int StudNum, int StafNum) {
 		Name = n;
 		Students_Num = StudNum;
 		Staff_Num = StafNum;
 	}
-	virtual string GetName() const = 0;
+	virtual const string& GetName() const = 0;
 	virtual int GetStudentsNum() const = 0;
 	virtual int GetStaffNum() const = 0;
-	virtual void SetName(string& s) = 0;
+	virtual void SetName(const string& s) = 0;
 	virtual void SetStudentsNum(int sn) = 0;
 	virtual void SetStaffNum(int sn) = 0;
 };
 class CS_Department : public Department { 
 public:
-	CS_Department(string n, int StudNum, int StafNum) : Department(n, StudNum, StafNum) {}
-	string GetName() const override {
+	CS_Department(const string& n, int StudNum, int StafNum) : Department(n, StudNum, StafNum) {}
+	const string& GetName() const override {
 		return Name;
 	}
 	int GetStudentsNum() const override {
@@ -40,7 +39,7 @@ public:
 	int GetStaffNum() const override {
 		return Staff_Num;
 	}
-	void SetName(string& s) override {
+	void SetName(const string& s) override {
 		Name = s;
 	}
 	void SetStudentsNum(int sn) override {
@@ -52,8 +51,8 @@ public:
 };
 class IT_Department : public Department {
 public:
-	IT_Department(string n, int StudNum, int StafNum) : Department(n, StudNum, StafNum) {}
-	string GetName() const override {
+	IT_Department(const string& n, int StudNum, int StafNum) : Department(n, StudNum, StafNum) {}
+	const string& GetName() const override {
 		return Name;
 	}
 	int GetStudentsNum() const override {
@@ -62,7 +61,7 @@ public:
 	int GetStaffNum() const override {
 		return Staff_Num;
 	}
-	void SetName(string& s) override {
+	void SetName(const string& s) override {
 		Name = s;
 	}
 	void SetStudentsNum(int sn) override {
@@ -76,10 +75,10 @@ class CI_Faculty {
 public:
 	string Name;
 	vector<Department> Depts;
-	CI_Faculty(string& n) {
+	CI_Faculty(const string& n) {
 		Name = n;
 	}
-	void AddDepartment(Department& dpt) {
+	void AddDepartment(const Department& dpt) {
 		Depts.push_back(dpt);
 	}
 	void DisplayInfoAboutDepts() {

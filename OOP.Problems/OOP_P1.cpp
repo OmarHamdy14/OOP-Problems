@@ -3,7 +3,6 @@
 Create a general class with common data and behavior. Then, create several more specific classes based on it, 
 each with different outputs for a shared method.
 */
-#include "OOP_P1.h"
 #include <iostream>
 #include <string>
 #include <memory>

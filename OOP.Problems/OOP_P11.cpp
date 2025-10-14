@@ -18,37 +18,37 @@ class Tool {
 protected:
 	string Name;
 public:
-	Tool(string& N) : Name(N) {}
-	virtual void work(string& userRole) = 0;
-	virtual string GetName() const = 0;
-	virtual void SetName(string& s) = 0;
+	Tool(const string& N) : Name(N) {}
+	virtual void work(const string& userRole) = 0;
+	virtual const string& GetName() const = 0;
+	virtual void SetName(const string& s) = 0;
 };
 class Tool_A : public Tool {
 public:
-	Tool_A(string& n) : Tool(n){}
-	void work(string& userRole) override{
+	Tool_A(const string& n) : Tool(n){}
+	void work(const string& userRole) override{
 		cout << userRole << " use " << Name << endl;
 	}
-	string GetName() const override { return Name; }
-	void SetName(string& s) override { Name = s; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& s) override { Name = s; }
 };
 class Tool_B : public Tool {
 public:
-	Tool_B(string& n) : Tool(n) {}
-	void work(string& userRole) override {
+	Tool_B(const string& n) : Tool(n) {}
+	void work(const string& userRole) override {
 		cout << userRole << " use " << Name << endl;
 	}
-	string GetName() const override { return Name; }
-	void SetName(string& s) override { Name = s; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& s) override { Name = s; }
 };
 class Tool_C : public Tool {
 public:
-	Tool_C(string& n) : Tool(n) {}
-	void work(string& userRole) override {
+	Tool_C(const string& n) : Tool(n) {}
+	void work(const string& userRole) override {
 		cout << userRole << " use " << Name << endl;
 	}
-	string GetName() const override { return Name; }
-	void SetName(string& s) override { Name = s; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& s) override { Name = s; }
 };
 
 
@@ -58,15 +58,15 @@ protected:
 	string Name;
 	vector<shared_ptr<Tool>> AllowedTools;
 public:
-	Role(string n) : Name(n) {}
+	Role(const string& n) : Name(n) {}
 	virtual void addTool(shared_ptr<Tool>& tool) = 0;
 	virtual void DisplayWorkAllowedTools() = 0;
-	virtual string GetName() const = 0;
-	virtual void SetName(string& s) = 0;
+	virtual const string& GetName() const = 0;
+	virtual void SetName(const string& s) = 0;
 };
 class Manager : public Role {
 public:
-	Manager(string n) : Role(n) {}
+	Manager(const string& n) : Role(n) {}
 	void addTool(shared_ptr<Tool>& tool) override {
 		AllowedTools.push_back(tool);
 	}
@@ -76,12 +76,12 @@ public:
 			tool->work(Name);
 		}
 	}
-	string GetName() const override { return Name; }
-	void SetName(string& s) override { Name = s; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& s) override { Name = s; }
 };
 class SemiManager : public Role {
 public:
-	SemiManager(string n) : Role(n) {}
+	SemiManager(const string& n) : Role(n) {}
 	void addTool(shared_ptr<Tool>& tool) override {
 		AllowedTools.push_back(tool);
 	}
@@ -91,12 +91,12 @@ public:
 			tool->work(Name);
 		}
 	}
-	string GetName() const override { return Name; }
-	void SetName(string& s) override { Name = s; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& s) override { Name = s; }
 };
 class Assistant : public Role {
 public:
-	Assistant(string n) : Role(n) {}
+	Assistant(const string& n) : Role(n) {}
 	void addTool(shared_ptr<Tool>& tool) override {
 		AllowedTools.push_back(tool);
 	}
@@ -106,8 +106,8 @@ public:
 			tool->work(Name);
 		}
 	}
-	string GetName() const override { return Name; }
-	void SetName(string& s) override { Name = s; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& s) override { Name = s; }
 };
 
 int main() {

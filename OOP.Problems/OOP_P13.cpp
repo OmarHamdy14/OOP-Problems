@@ -16,15 +16,15 @@ class User {
 	string Name;
 	vector<unique_ptr<Message>> RecievedMessages;
 public:
-	User(string& n) : Name(n) {}
+	User(const string& n) : Name(n) {}
 	void DisplayUserInfo() {
 		cout << "User Name: " << Name << endl;
 	}
 	void RecieveMessage(unique_ptr<Message>&& message) {
 		RecievedMessages.push_back(move(message));
 	}
-	string GetName() const { return Name; }
-	void SetName(string& s) { Name = s; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& s) { Name = s; }
 };
 class Message {
 protected:
@@ -32,37 +32,37 @@ protected:
 public:
 	shared_ptr<User> Sender;
 	shared_ptr<User> Recipient;
-	Message(string& c, shared_ptr<User>& s, shared_ptr<User>& r) : Content(c),Sender(s),Recipient(r) {}
+	Message(const string& c, shared_ptr<User>& s, shared_ptr<User>& r) : Content(c),Sender(s),Recipient(r) {}
 	virtual void DisplayMessageInfo() = 0;
-	virtual string GetContent() const = 0;
-	virtual void SetContent(string& c) = 0;
+	virtual const string& GetContent() const = 0;
+	virtual void SetContent(const string& c) = 0;
 };
 class TextMessage : public Message {
 public:
-	TextMessage(string& c, shared_ptr<User>& s, shared_ptr<User>& r) : Message(c,s,r) {}
+	TextMessage(const string& c, shared_ptr<User>& s, shared_ptr<User>& r) : Message(c,s,r) {}
 	void DisplayMessageInfo() override {
 		cout << "Type: Text" << endl << "Content: " << Content;
 	}
-	string GetContent() const override { return Content; }
-	void SetContent(string& c) override { Content = c; }
+	const string& GetContent() const override { return Content; }
+	void SetContent(const string& c) override { Content = c; }
 };
 class FileMessage : public Message {
 public:
-	FileMessage(string& c, shared_ptr<User>& s, shared_ptr<User>& r) : Message(c, s, r) {}
+	FileMessage(const string& c, shared_ptr<User>& s, shared_ptr<User>& r) : Message(c, s, r) {}
 	void DisplayMessageInfo() override {
 		cout << "Type: File" << endl << "Content: " << Content;
 	}
-	string GetContent() const override { return Content; }
-	void SetContent(string& c) override { Content = c; }
+	const string& GetContent() const override { return Content; }
+	void SetContent(const string& c) override { Content = c; }
 };
 class VoiceMessage : public Message {
 public:
-	VoiceMessage(string& c, shared_ptr<User>& s, shared_ptr<User>& r) : Message(c, s, r) {}
+	VoiceMessage(const string& c, shared_ptr<User>& s, shared_ptr<User>& r) : Message(c, s, r) {}
 	void DisplayMessageInfo() override {
 		cout << "Type: Voice" << endl << "Content: " << Content;
 	}
-	string GetContent() const override { return Content; }
-	void SetContent(string& c) override { Content = c; }
+	const string& GetContent() const override { return Content; }
+	void SetContent(const string& c) override { Content = c; }
 };
 
 class MessagesHistory {
@@ -78,7 +78,7 @@ public:
 			cout << "Message: " << message->GetContent() << endl;
 		}
 	}
-	void DisplayAllMessagesBySenderName(string& SenderName) {
+	void DisplayAllMessagesBySenderName(const string& SenderName) {
 		for (auto& message : Messages) {
 			if (message->Sender->GetName() == SenderName) {
 				cout << "From: " << message->Sender->GetName() << endl;
@@ -89,7 +89,7 @@ public:
 	}
 };
 class MessageDelivery {
-	MessagesHistory& Logger;
+	MessagesHistory& Logger;          // problem with const ??
 public:
 	MessageDelivery(MessagesHistory& L) : Logger(L){}
 	void DeliverMessage(unique_ptr<Message>&& message, shared_ptr<User> Sender, shared_ptr<User> Recipient) {

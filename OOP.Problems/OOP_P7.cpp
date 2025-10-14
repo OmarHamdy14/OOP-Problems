@@ -26,52 +26,52 @@ class Device {
 protected:
 	string Name;
 public:
-	Device(string n) : Name(n) {}
+	Device(const string& n) : Name(n) {}
 	virtual void InfoAboutDev() = 0;
-	virtual string GetName() const = 0;
-	virtual void SetName(string& n) = 0;
+	virtual const string& GetName() const = 0;
+	virtual void SetName(const string& n) = 0;
 };
 class Printer : public Device {
 public:
-	Printer(string n) : Device(n) {}
+	Printer(const string& n) : Device(n) {}
 	void InfoAboutDev() override {
 		cout << "Device Name: " << Name << endl;
 	}
-	string GetName() const override { return Name; }
-	void SetName(string& n) override { Name = n; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& n) override { Name = n; }
 };
 class TV : public Device {
 public:
-	TV(string n) : Device(n) {}
+	TV(const string& n) : Device(n) {}
 	void InfoAboutDev() override {
 		cout << "Device Name: " << Name << endl;
 	}
-	string GetName() const override { return Name; }
-	void SetName(string& n) override { Name = n; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& n) override { Name = n; }
 };
 class PC : public Device {
 public:
-	PC(string n) : Device(n) {}
+	PC(const string& n) : Device(n) {}
 	void InfoAboutDev() override {
 		cout << "Device Name: " << Name << endl;
 	}
-	string GetName() const override { return Name; }
-	void SetName(string& n) override { Name = n; }
+	const string& GetName() const override { return Name; }
+	void SetName(const string& n) override { Name = n; }
 };
 class DeviceManager {
 	vector<shared_ptr<Device>> devices;
-	InternalPart& internalPart;
+	const InternalPart& internalPart;
 	OutsideElement outsideElement;
 public:
 	/* when i write "vector<shared_ptr<Device>>& devices;" the constructor gives me this error : "DeviceManager(OutsideElement& OE)"
 	provide no intilization for : reference member "devices" */
-	DeviceManager(InternalPart& iE, OutsideElement& OE) : internalPart(iE), outsideElement(OE) {}
+	DeviceManager(const InternalPart& iE, const OutsideElement& OE) : internalPart(iE), outsideElement(OE) {}
 	void AddDevice(shared_ptr<Device> d) {
 		devices.push_back(d);
 	}
 	void StartAllDeviecs() {
 		for (auto& device : devices) {
-			internalPart.SendMsg(device->GetName());
+			internalPart.SendMsg(device->GetName());       // why : error appeared here when using const with constructoor parameters ?
 			device->InfoAboutDev();
 			outsideElement.PrintAnyThing("ssssssssssssssss");
 		}

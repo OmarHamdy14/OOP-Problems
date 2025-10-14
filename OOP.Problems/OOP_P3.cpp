@@ -1,4 +1,3 @@
-#include "OOP_P3.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -14,11 +13,11 @@ class Student {
 	int age;
 	int level;
 public:
-	Student(string n, int a, int l) { Name = n; age = a; level = l; }
-	string GetName() { return Name; }
+	Student(const string& n, int a, int l) { Name = n; age = a; level = l; }
+	const string& GetName() { return Name; }
 	int GetAge() const { return age; }
 	int GetLevel() const { return level; }
-	void SetName(string& n) { Name = n; }
+	void SetName(const string& n) { Name = n; }
 	void SetAge(int ag) { age = ag; }
 	void SetLevel(int lv) { level = lv; }
 };
@@ -26,10 +25,10 @@ class Department {
 	string Name;
 	vector<Student> students;
 public:
-	Department(string N) {
+	Department(const string& N) {
 		Name = N;
 	}
-	void AddStudent(Student& std) {
+	void AddStudent(const Student& std) {     // watch const here ??
 		students.push_back(std);
 	}
 	void DisplayAllStudentsInfo() {
@@ -40,6 +39,6 @@ public:
 
 		}
 	}
-	string GetName() const { return Name; }
-	void SetName(string& n) { Name = n; }
+	const string& GetName() const { return Name; }
+	void SetName(const string& n) { Name = n; }
 };

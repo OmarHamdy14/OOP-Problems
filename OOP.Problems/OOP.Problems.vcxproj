@@ -168,8 +168,6 @@
     <ClCompile Include="P36.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="OOP_P1.h" />
-    <ClInclude Include="OOP_P10.h" />
     <ClInclude Include="OOP_P11.h" />
     <ClInclude Include="OOP_P12.h" />
     <ClInclude Include="OOP_P13.h" />
@@ -181,18 +179,10 @@
     <ClInclude Include="OOP_P17.h" />
     <ClInclude Include="OOP_P18.h" />
     <ClInclude Include="OOP_P19.h" />
-    <ClInclude Include="OOP_P2.h" />
     <ClInclude Include="OOP_P20.h" />
     <ClInclude Include="OOP_P21.h" />
     <ClInclude Include="OOP_P22.h" />
     <ClInclude Include="OOP_P23.h" />
-    <ClInclude Include="OOP_P3.h" />
-    <ClInclude Include="OOP_P4.h" />
-    <ClInclude Include="OOP_P5.h" />
-    <ClInclude Include="OOP_P6.h" />
-    <ClInclude Include="OOP_P7.h" />
-    <ClInclude Include="OOP_P8.h" />
-    <ClInclude Include="OOP_P9.h" />
     <ClInclude Include="P24.h" />
     <ClInclude Include="P25.h" />
     <ClInclude Include="P26.h" />

@@ -1,4 +1,3 @@
-#include "OOP_P6.h"
 #include <iostream>
 #include <string>
 #include <vector>

@@ -132,6 +132,9 @@
     <ClCompile Include="P36.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="P37.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OOP_P11.h">

@@ -166,6 +166,7 @@
     <ClCompile Include="P34.cpp" />
     <ClCompile Include="P35.cpp" />
     <ClCompile Include="P36.cpp" />
+    <ClCompile Include="P37.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OOP_P11.h" />

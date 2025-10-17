@@ -1,4 +1,3 @@
-#include "OOP_P14.h"
 #include <iostream>
 #include <string>
 #include <algorithm>

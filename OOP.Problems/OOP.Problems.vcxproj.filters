@@ -137,30 +137,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="OOP_P16.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OOP_P17.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OOP_P18.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OOP_P19.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OOP_P20.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OOP_P21.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OOP_P22.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OOP_P23.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="P24.h">
       <Filter>Header Files</Filter>
     </ClInclude>

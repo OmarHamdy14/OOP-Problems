@@ -169,14 +169,6 @@
     <ClCompile Include="P37.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="OOP_P16.h" />
-    <ClInclude Include="OOP_P17.h" />
-    <ClInclude Include="OOP_P18.h" />
-    <ClInclude Include="OOP_P19.h" />
-    <ClInclude Include="OOP_P20.h" />
-    <ClInclude Include="OOP_P21.h" />
-    <ClInclude Include="OOP_P22.h" />
-    <ClInclude Include="OOP_P23.h" />
     <ClInclude Include="P24.h" />
     <ClInclude Include="P25.h" />
     <ClInclude Include="P26.h" />

@@ -1,4 +1,3 @@
-#include "OOP_P20.h"
 #include <iostream>
 #include <string>
 #include <algorithm>

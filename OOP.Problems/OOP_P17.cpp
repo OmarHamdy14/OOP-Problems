@@ -1,4 +1,3 @@
-#include "OOP_P17.h"
 #include <iostream>
 #include <string>
 #include <algorithm>

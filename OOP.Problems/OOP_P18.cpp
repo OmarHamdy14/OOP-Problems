@@ -1,4 +1,3 @@
-#include "OOP_P18.h"
 #include <iostream>
 #include <string>
 #include <algorithm>

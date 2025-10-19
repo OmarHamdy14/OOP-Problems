@@ -167,6 +167,7 @@
     <ClCompile Include="P35.cpp" />
     <ClCompile Include="P36.cpp" />
     <ClCompile Include="P37.cpp" />
+    <ClCompile Include="P38.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="P24.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="P34.h" />
     <ClInclude Include="P35.h" />
     <ClInclude Include="P36.h" />
+    <ClInclude Include="P38.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

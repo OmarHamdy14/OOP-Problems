@@ -141,6 +141,9 @@
     <ClCompile Include="P39.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="P40.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="P24.h">
@@ -186,6 +189,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="P39.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="P40.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

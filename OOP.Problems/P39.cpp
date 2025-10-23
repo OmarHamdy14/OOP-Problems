@@ -27,6 +27,7 @@ public:
 };
 class Gun : public Item {
 public:
+	Gun(const string& n) : Item(n) {}
 	void Buy() const override {
 		cout << "BUYING GUN ........\n";
 	}
@@ -39,6 +40,7 @@ public:
 };
 class MedKit : public Item {
 public:
+	MedKit(const string& n) : Item(n) {}
 	void Buy() const override {
 		cout << "BUYING MedKit ........\n";
 	}
@@ -51,6 +53,7 @@ public:
 };
 class Shovel : public Item {
 public:
+	Shovel(const string& n) : Item(n) {}
 	void Buy() const override {
 		cout << "BUYING Shovel ........\n";
 	}

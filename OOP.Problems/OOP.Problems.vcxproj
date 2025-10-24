@@ -172,13 +172,6 @@
     <ClCompile Include="P40.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="P24.h" />
-    <ClInclude Include="P25.h" />
-    <ClInclude Include="P26.h" />
-    <ClInclude Include="P27.h" />
-    <ClInclude Include="P28.h" />
-    <ClInclude Include="P29.h" />
-    <ClInclude Include="P30.h" />
     <ClInclude Include="P31.h" />
     <ClInclude Include="P32.h" />
     <ClInclude Include="P33.h" />

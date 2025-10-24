@@ -1,4 +1,3 @@
-#include "P26.h"
 #include <iostream>
 #include <string>
 #include <algorithm>

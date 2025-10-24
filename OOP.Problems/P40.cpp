@@ -61,3 +61,14 @@ public:
 		dishes.push_back(move(dsh));
 	}
 };
+
+int main() {
+	shared_ptr<Appliance> oven = make_shared<Oven>("oven");
+	shared_ptr<Appliance> fryer = make_shared<Fryer>("fryer");
+
+	unique_ptr<Dish> dsh = make_unique<Dish>("dish-1");
+	dsh->AddTool(oven);
+
+	Chef chf("omar");
+	chf.AddDish(move(dsh));
+}

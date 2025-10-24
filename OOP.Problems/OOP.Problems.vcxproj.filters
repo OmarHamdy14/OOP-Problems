@@ -146,27 +146,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="P24.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="P25.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="P26.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="P27.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="P28.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="P29.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="P30.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="P31.h">
       <Filter>Header Files</Filter>
     </ClInclude>

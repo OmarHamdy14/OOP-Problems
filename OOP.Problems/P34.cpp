@@ -1,4 +1,3 @@
-#include "P34.h"
 #include <iostream>
 #include <string>
 #include <algorithm>

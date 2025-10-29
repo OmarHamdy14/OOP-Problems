@@ -1,4 +1,3 @@
-#include "P36.h"
 #include <iostream>
 #include <string>
 #include <algorithm>

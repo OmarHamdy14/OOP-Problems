@@ -150,26 +150,11 @@
     <ClCompile Include="P42.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="P43.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="P31.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="P32.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="P33.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="P34.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="P35.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="P36.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="P38.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -183,6 +168,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="P42.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="P43.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

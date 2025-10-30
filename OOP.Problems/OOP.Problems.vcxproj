@@ -172,19 +172,15 @@
     <ClCompile Include="P40.cpp" />
     <ClCompile Include="P41.cpp" />
     <ClCompile Include="P42.cpp" />
+    <ClCompile Include="P43.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="P31.h" />
-    <ClInclude Include="P32.h" />
-    <ClInclude Include="P33.h" />
-    <ClInclude Include="P34.h" />
-    <ClInclude Include="P35.h" />
-    <ClInclude Include="P36.h" />
     <ClInclude Include="P38.h" />
     <ClInclude Include="P39.h" />
     <ClInclude Include="P40.h" />
     <ClInclude Include="P41.h" />
     <ClInclude Include="P42.h" />
+    <ClInclude Include="P43.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

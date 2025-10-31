@@ -113,3 +113,16 @@ public:
 		}
 	}
 };
+
+int main() {
+	unique_ptr<Engine> eng = make_unique<Engine>("e1-3200");
+
+	unique_ptr<Runway> rw = make_unique<Runway>("l1","l2","abc214",false);
+
+	ControlTower ct("ll");
+	ct.AddRunway(move(rw));
+	ct.DisplayAllRunways();
+
+	shared_ptr<Aircraft> psgCraft = make_shared<Aircraft>("t11-54");
+	psgCraft->SetEngine(move(eng));
+}

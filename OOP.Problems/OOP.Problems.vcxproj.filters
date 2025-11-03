@@ -18,61 +18,61 @@
     <ClCompile Include="OOP.Problems.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P1.cpp">
+    <ClCompile Include="P1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P2.cpp">
+    <ClCompile Include="P2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P3.cpp">
+    <ClCompile Include="P3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P4.cpp">
+    <ClCompile Include="P4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P5.cpp">
+    <ClCompile Include="P5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P6.cpp">
+    <ClCompile Include="P6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P7.cpp">
+    <ClCompile Include="P7.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P8.cpp">
+    <ClCompile Include="P8.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P9.cpp">
+    <ClCompile Include="P9.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P10.cpp">
+    <ClCompile Include="P10.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P11.cpp">
+    <ClCompile Include="P11.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P12.cpp">
+    <ClCompile Include="P12.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P13.cpp">
+    <ClCompile Include="P13.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P14.cpp">
+    <ClCompile Include="P14.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P15.cpp">
+    <ClCompile Include="P15.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P15_2.cpp">
+    <ClCompile Include="P15_2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P14_2.cpp">
+    <ClCompile Include="P14_2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P16.cpp">
+    <ClCompile Include="P16.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OOP_P17.cpp">
+    <ClCompile Include="P17.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="OOP_P18.cpp">
@@ -153,6 +153,9 @@
     <ClCompile Include="P43.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="P44.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="P38.h">
@@ -171,6 +174,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="P43.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="P44.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

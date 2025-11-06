@@ -64,7 +64,7 @@ public:
 	const string& GetName() const { return Name; }
 	void SetName(const string& t) { Name = t; }
 
-	void AddSong(shared_ptr<Song> sng) {
+	void AddSong(shared_ptr<Song>& sng) {
 		sngs.push_back(sng);
 	}
 
@@ -101,3 +101,7 @@ public:
 		plys.push_back(move(ply));
 	}
 };
+
+int main() {
+
+}

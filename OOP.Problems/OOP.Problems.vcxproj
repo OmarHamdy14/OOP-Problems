@@ -134,21 +134,20 @@
     <ClCompile Include="P12.cpp" />
     <ClCompile Include="P13.cpp" />
     <ClCompile Include="P14.cpp" />
-    <ClCompile Include="P14_2.cpp" />
     <ClCompile Include="P15.cpp" />
-    <ClCompile Include="P15_2.cpp" />
     <ClCompile Include="P16.cpp" />
     <ClCompile Include="P17.cpp" />
-    <ClCompile Include="OOP_P18.cpp" />
-    <ClCompile Include="OOP_P19.cpp" />
+    <ClCompile Include="P18.cpp" />
+    <ClCompile Include="P19.cpp" />
     <ClCompile Include="P2.cpp" />
-    <ClCompile Include="OOP_P20.cpp" />
-    <ClCompile Include="OOP_P21.cpp" />
-    <ClCompile Include="OOP_P22.cpp" />
-    <ClCompile Include="OOP_P23.cpp" />
+    <ClCompile Include="P20.cpp" />
+    <ClCompile Include="P21.cpp" />
+    <ClCompile Include="P22.cpp" />
+    <ClCompile Include="P23.cpp" />
     <ClCompile Include="P3.cpp" />
     <ClCompile Include="P4.cpp" />
     <ClCompile Include="P44.cpp" />
+    <ClCompile Include="P45.cpp" />
     <ClCompile Include="P5.cpp" />
     <ClCompile Include="P6.cpp" />
     <ClCompile Include="P7.cpp" />
@@ -183,6 +182,7 @@
     <ClInclude Include="P42.h" />
     <ClInclude Include="P43.h" />
     <ClInclude Include="P44.h" />
+    <ClInclude Include="P45.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

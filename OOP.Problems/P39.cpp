@@ -1,4 +1,3 @@
-#include "P39.h"
 #include <iostream>
 #include <string>
 #include <algorithm>

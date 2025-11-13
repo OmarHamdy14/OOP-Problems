@@ -1,4 +1,3 @@
-#include "P43.h"
 #include <iostream>
 #include <string>
 #include <algorithm>

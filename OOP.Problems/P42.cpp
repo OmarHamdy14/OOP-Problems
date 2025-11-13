@@ -1,4 +1,3 @@
-#include "P42.h"
 #include <iostream>
 #include <string>
 #include <algorithm>

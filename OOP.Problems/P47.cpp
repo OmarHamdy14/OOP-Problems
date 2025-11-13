@@ -75,7 +75,6 @@ protected:
 	vector<shared_ptr<Weapon>> wpns;
 	vector<shared_ptr<Ability>> abls;
 public:
-public:
 	Player(const string& n) : UserName(n){}
 	const string& GetName() const { return UserName; }
 	void SetName(const string& t) { UserName = t; }
@@ -83,5 +82,14 @@ public:
 	virtual void Defend() const = 0;
 };
 class Warrior : public Player {
-
+public:
+	Warrior(const string& n) : Player(n) {}
+};
+class Mage : public Player {
+public:
+	Mage(const string& n) : Player(n) {}
+};
+class Archer : public Player {
+public:
+	Archer(const string& n) : Player(n) {}
 };

@@ -177,11 +177,6 @@
     <ClCompile Include="P43.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="P41.h" />
-    <ClInclude Include="P42.h" />
-    <ClInclude Include="P43.h" />
-    <ClInclude Include="P44.h" />
-    <ClInclude Include="P45.h" />
     <ClInclude Include="P46.h" />
     <ClInclude Include="P47.h" />
   </ItemGroup>

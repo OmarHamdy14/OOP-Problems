@@ -84,12 +84,30 @@ public:
 class Warrior : public Player {
 public:
 	Warrior(const string& n) : Player(n) {}
+	void Attack() const override {
+
+	}
+	void Defend() const override {
+
+	}
 };
 class Mage : public Player {
 public:
 	Mage(const string& n) : Player(n) {}
+	void Attack() const override {
+
+	}
+	void Defend() const override {
+
+	}
 };
 class Archer : public Player {
 public:
 	Archer(const string& n) : Player(n) {}
+	void Attack() const override {
+
+	}
+	void Defend() const override {
+
+	}
 };

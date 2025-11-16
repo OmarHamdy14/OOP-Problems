@@ -80,6 +80,12 @@ public:
 	void SetName(const string& t) { UserName = t; }
 	virtual void Attack() const = 0;
 	virtual void Defend() const = 0;
+	void AddWeapon(shared_ptr<Weapon>& wp) {
+		wpns.push_back(wp);
+	}
+	void AddAbility(shared_ptr<Ability>& abl) {
+		abls.push_back(abl);
+	}
 };
 class Warrior : public Player {
 public:
@@ -111,3 +117,26 @@ public:
 
 	}
 };
+
+class Round {
+	vector<unique_ptr<Player>> players;
+public:
+	void AddPayer(unique_ptr<Player>&& pl) {
+		players.push_back(move(pl));
+	}
+};
+
+int main() {
+	shared_ptr<Weapon> wp1 = make_shared<W1>("1",30);
+	shared_ptr<Weapon> wp2 = make_shared<W2>("2", 30);
+	shared_ptr<Weapon> wp3 = make_shared<W3>("3", 30);
+
+	shared_ptr<Ability> abl = make_shared<Abl2>();
+	
+	unique_ptr<Player> pl1 = make_unique<Archer>("hhh");
+
+	pl1->AddAbility(abl);
+	pl1->AddWeapon(wp1);
+
+
+}

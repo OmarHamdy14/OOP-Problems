@@ -1,5 +1,5 @@
 #pragma once
-class P46
+class P48
 {
 };
 

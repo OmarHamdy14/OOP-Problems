@@ -21,10 +21,12 @@ class Task {
 protected:
 	string Name;
 public:
+	Task(const string& n) : Name(n) {}
 	virtual const string& DoWork(const string& data) const = 0;
 };
 class DataCleaning : public Task {
 public:
+	DataCleaning(const string& n) : Task(n) {}
 	const string& DoWork(const string& data) const override {
 		cout << Name << " ................\n";
 		return data;
@@ -32,12 +34,14 @@ public:
 };
 class ModelTraining : public Task {
 public:
+	ModelTraining(const string& n) : Task(n) {}
 	const string& DoWork(const string& data) const override {
 		cout << Name << " ................\n";
 	}
 };
 class Evaluation : public Task {
 public:
+	Evaluation(const string& n) : Task(n) {}
 	const string& DoWork(const string& data) const override {
 		cout << Name << " ................\n";
 	}
@@ -72,3 +76,14 @@ public:
 		wflows.push_back(move(wfl));
 	}
 };
+
+int main() {
+	shared_ptr<Task> DC = make_shared<DataCleaning>("..");
+	shared_ptr<Task> MT = make_shared<ModelTraining>("..");
+
+	unique_ptr<Workflow> wf = make_unique<Workflow>("..", "..");
+
+	PipelineManager PM;
+	PM.AddWorkflow(move(wf));
+	PM.AddTaskToWorkflow(DC, move(wf));
+}

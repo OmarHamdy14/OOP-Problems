@@ -65,6 +65,7 @@ public:
 	}
 };
 
+
 class DeviceManager {
 	vector<unique_ptr<Device>> devs;
 	vector<shared_ptr<AutomationRule>> rules;
@@ -96,8 +97,15 @@ public:
 		}
 	}
 
-	void DoRules() {
-		for (auto& rule : rules) {
-			rule->Do(devs);
-		}
+	void AddRule(shared_ptr<AutomationRule>& ar) {
+		rules.push_back(ar);
+	}
 };
+int main() {
+	unique_ptr<Device> light = make_unique<Light>();
+	unique_ptr<Device> cam = make_unique<Camera>();
+
+	DeviceManager manager;
+	manager.AddDevice(move(light));
+	
+}

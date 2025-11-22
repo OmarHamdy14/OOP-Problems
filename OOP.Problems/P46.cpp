@@ -62,4 +62,20 @@ public:
 	void SendPolice(Incident& incd, shared_ptr<Police>& plc) {
 		cout << "Sending Police ..........\n";
 	}
+	void SendFire(Incident& incd, shared_ptr<Fire>& f) {
+		cout << "Sending Fire ..........\n";
+	}
+	void SendAmbulance(Incident& incd, shared_ptr<Fire>& f) {
+		cout << "Sending Ambulance ..........\n";
+	}
 };
+
+int main() {
+	shared_ptr<Police> police = make_shared<Police>();
+	shared_ptr<Fire> fire = make_shared<Fire>();
+
+	Incident inc("");
+
+	Dispatcher disp("ddd");
+	disp.SendFire(inc, fire);
+}

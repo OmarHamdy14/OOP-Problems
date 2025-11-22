@@ -166,12 +166,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="P48.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="P49.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
 </Project>

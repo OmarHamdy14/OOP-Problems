@@ -116,3 +116,37 @@ public:
         }
     }
 };
+
+int main() {
+    auto engine1 = make_shared<Engine>("H");
+    auto engine2 = make_shared<Engine>("M");
+    auto engine3 = make_shared<Engine>("L");
+
+    auto mission1 = make_shared<ExplorationMission>();
+    auto mission2 = make_shared<TransportMission>();
+    auto mission3 = make_shared<ResearchMission>();
+
+    auto explorer = make_shared<ExplorerShip>("Explorer-1", engine1, mission1);
+    auto transport = make_shared<TransportShip>("Transport", engine2, mission2);
+    auto research = make_shared<ResearchShip>("Research", engine3, mission3);
+
+    explorer->AddCrewMember({ "AA", "Pilot" });
+    explorer->AddCrewMember({ "BB", "MANAG" });
+
+    transport->AddCrewMember({ "CC", "Captain" });
+    transport->AddCrewMember({ "DD", "Engineer" });
+
+    research->AddCrewMember({ "EE", "QA" });
+    research->AddCrewMember({ "FF", "AI" });
+
+    MissionControl control;
+    control.AddShip(explorer);
+    control.AddShip(transport);
+    control.AddShip(research);
+
+    control.LaunchAll();
+
+    explorer->CrewInfo();
+    transport->CrewInfo();
+    research->CrewInfo();
+}

@@ -24,11 +24,11 @@ public:
 };
 
 class Order {
+public:
     string TraderName;
     string Name;
     double Price;
-public:
-    Order(const string& t, const string& n, double p, int q)
+    Order(const string& t, const string& n, double p)
         : TraderName(t), Name(n), Price(p) {}
 };
 
@@ -66,3 +66,37 @@ public:
         strategy->behavior();
     }
 };
+
+
+class TradingPlatform {
+    MarketData md;
+    vector<unique_ptr<Trader>> traders;
+    vector<Order> orderBook;
+public:
+    void AddTrader(unique_ptr<Trader> t) {
+        traders.push_back(move(t));
+    }
+
+    void UpdateMarket(double newPrice) {
+        md.UpdatePrice(newPrice);
+    }
+
+    void ShowOrders() {
+        for (auto& o : orderBook) {
+            cout << o.TraderName << " placed " << o.Name << "\n" << o.Price << "\n";
+        }
+    }
+};
+
+int main() {
+    TradingPlatform platform;
+
+    platform.AddTrader(make_unique<Trader>("aa", make_unique<MomentumStrategy>()));
+    platform.AddTrader(make_unique<Trader>("bb", make_unique<MeanReversionStrategy>()));
+
+    platform.UpdateMarket(10.5);
+    platform.UpdateMarket(11.5);
+    platform.UpdateMarket(12.5);
+
+    platform.ShowOrders();
+}

@@ -65,3 +65,57 @@ public:
     string Type() const override { return "PayPal"; }
     bool Pay(double amount) override { return true; }
 };
+
+class OrderItem {
+    Product product;
+    int quantity;
+public:
+    OrderItem(Product p, int q) : product(p), quantity(q) {}
+    double Total() const { return product.GetPrice() * quantity; }
+    string Name() const { return product.GetName(); }
+    int Qty() const { return quantity; }
+};
+
+class Order {
+    vector<OrderItem> items;
+    double total = 0.0;
+    bool paid = false;
+public:
+    void AddItem(const OrderItem& i) {
+        items.push_back(i);
+        total += i.Total();
+    }
+
+    double Total() const { return total; }
+
+    bool Pay(Payment& p) {
+        paid = p.Pay(total);
+        return paid;
+    }
+
+    bool IsPaid() const { return paid; }
+};
+
+class Store {
+    Inventory inventory;
+public:
+    Inventory& GetInventory() { return inventory; }
+};
+
+class User {
+    string name;
+    vector<shared_ptr<Order>> orders;
+public:
+    User(string n) : name(n) {}
+
+    shared_ptr<Order> CreateOrder() {
+        auto o = make_shared<Order>();
+        orders.push_back(o);
+        return o;
+    }
+
+    void ShowOrders() {
+        for (auto& o : orders)
+            cout << o->Total() << "\n";
+    }
+};

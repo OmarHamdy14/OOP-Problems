@@ -174,5 +174,13 @@
     <ClCompile Include="P52.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="P53.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="P53.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

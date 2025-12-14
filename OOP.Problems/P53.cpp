@@ -1,4 +1,3 @@
-#include "P53.h"
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -7,6 +6,7 @@
 #include <memory>
 #include <cstdlib>
 #include <ctime>
+#include <unordered_map>
 using namespace std;
 
 /*
@@ -55,5 +55,49 @@ public:
     Project(string t) : Assignment(t) {}
     double Evaluate(double submission) const override {
         return submission * 1.2 > 100 ? 100 : submission * 1.2;
+    }
+};
+
+class Course {
+    string name;
+    vector<Lesson> lessons;
+    vector<shared_ptr<Assignment>> assignments;
+public:
+    Course(string n) : name(n) {}
+
+    void AddLesson(const Lesson& l) { lessons.push_back(l); }
+    void AddAssignment(shared_ptr<Assignment> a) { assignments.push_back(a); }
+
+    vector<shared_ptr<Assignment>>& GetAssignments() { return assignments; }
+    string GetName() const { return name; }
+};
+
+class Instructor {
+    string name;
+public:
+    Instructor(string n) : name(n) {}
+    shared_ptr<Course> CreateCourse(string title) {
+        return make_shared<Course>(title);
+    }
+};
+
+class Student {
+    string name;
+    vector<shared_ptr<Course>> courses;
+    unordered_map<string, double> grades;
+public:
+    Student(string n) : name(n) {}
+
+    void Enroll(shared_ptr<Course> c) {
+        courses.push_back(c);
+    }
+
+    void Submit(shared_ptr<Assignment> a, double score) {
+        grades[a->GetTitle()] = a->Evaluate(score);
+    }
+
+    void ShowGrades() const {
+        for (auto& g : grades)
+            cout << g.first << " : " << g.second << "\n";
     }
 };

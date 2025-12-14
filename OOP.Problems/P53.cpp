@@ -11,10 +11,9 @@ using namespace std;
 
 /*
 * Problem Statement
-Financial Trading Platform
-Traders place buy/sell orders.
-MarketData feeds in price changes.
-Strategies (Momentum, MeanReversion) define different trading behaviors.
+Learning Management System Instructors create Courses, which contain Lessons, Quizzes, and Assignments. 
+Students enroll, submit work, and get graded. 
+different assignment types.
 */
 
 class Lesson {

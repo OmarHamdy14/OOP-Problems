@@ -1,4 +1,3 @@
-#include "P55.h"
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -55,3 +54,66 @@ public:
     void Move() override { cout << name << " walks slowly.\n"; }
     void Sound() override { cout << name << " eeee!\n"; }
 };
+
+class Habitat {
+private:
+    string type;
+    vector<Animal*> animals;
+    double temperature;
+    double humidity;
+
+public:
+    Habitat(const string& t, double temp, double hum)
+        : type(t), temperature(temp), humidity(hum) {
+    }
+
+    void AddAnimal(Animal* a) {
+        animals.push_back(a);
+    }
+
+    void ShowEnvironment() {
+        
+    }
+
+    void ShowAnimals() {
+        for (auto a : animals) {
+            a->Sound();
+        }
+    }
+};
+
+class Visitor {
+private:
+    string visitorName;
+
+public:
+    Visitor(const string& n) : visitorName(n) {}
+
+    void InteractWith(IInteractable* a) {
+        cout << visitorName << " interacts: ";
+        a->Interact();
+    }
+};
+
+int main() {
+    Animal* lion = new Lion("aa");
+    Animal* elephant = new Elephant("bb");
+
+    Habitat savanna("Savanna", 35, 20);
+    Habitat arctic("Arctic Zone", -5, 60);
+
+    savanna.AddAnimal(lion);
+    savanna.AddAnimal(elephant);
+
+    Visitor v("Omar");
+
+    savanna.ShowEnvironment();
+    savanna.ShowAnimals();
+
+    arctic.ShowEnvironment();
+    arctic.ShowAnimals();
+
+    v.InteractWith(lion);
+    v.InteractWith(elephant);
+
+}

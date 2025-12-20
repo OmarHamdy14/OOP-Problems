@@ -1,4 +1,3 @@
-#include "P56.h"
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -59,4 +58,37 @@ class AssemblyTask : public ITask {
 public:
     string Name() const override { return "Assembly Task"; }
     string RequiredTool() const override { return "Assembler"; }
+};
+
+class Robot {
+    unique_ptr<ITool> tool;
+public:
+    Robot() {}
+
+    void AttachTool(unique_ptr<ITool> t) { tool = move(t); }
+    void DetachTool() { tool.reset(); }
+
+    bool CanPerform(const ITask& task) const {
+        return tool && tool->Name() == task.RequiredTool();
+    }
+
+    void Perform(const ITask& task) {
+        tool->Use();
+    }
+};
+
+class TaskScheduler {
+    vector<shared_ptr<Robot>> robots;
+public:
+    void AddRobot(shared_ptr<Robot> rb) { robots.push_back(rb); }
+
+    void AssignTask(const ITask& task) {
+        for (auto& r : robots) {
+            if (r->CanPerform(task)) {
+                r->Perform(task);
+                return;
+            }
+        }
+        cout << "No robot available for: " << task.Name() << "\n";
+    }
 };

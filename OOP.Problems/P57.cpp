@@ -1,4 +1,3 @@
-#include "P57.h"
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -59,4 +58,76 @@ class DrivingStrategy {
 public:
     virtual void Drive(Engine& engine) = 0;
     virtual string Name() const = 0;
+};
+class AggressiveDriving : public DrivingStrategy {
+public:
+    void Drive(Engine& engine) override {
+        engine.Accelerate(20);
+    }
+    string Name() const override { return "Aggressive"; }
+};
+
+class DefensiveDriving : public DrivingStrategy {
+public:
+    void Drive(Engine& engine) override {
+        engine.Accelerate(5);
+    }
+    string Name() const override { return "Defensive"; }
+};
+
+
+
+class WorldObject {
+public:
+    virtual string Interact() = 0;
+};
+
+class Road : public WorldObject {
+public:
+    string Interact() override {
+        return "....";
+    }
+};
+
+class Obstacle : public WorldObject {
+public:
+    string Interact() override {
+        return "......";
+    }
+};
+
+class Car {
+    unique_ptr<ISensor> camera;
+    unique_ptr<ISensor> radar;
+    Engine engine;
+
+    unique_ptr<DrivingStrategy> strategy;
+
+public:
+    Car(unique_ptr<ISensor> cam,
+        unique_ptr<ISensor> rad,
+        unique_ptr<DrivingStrategy> strat)
+        : camera(move(cam)), radar(move(rad)), strategy(move(strat)) {
+    }
+
+    void SetDrivingStrategy(unique_ptr<DrivingStrategy> newStrategy) {
+        strategy = move(newStrategy);
+    }
+
+    void ScanEnvironment() {
+        cout << camera->Scan() << endl;
+        cout << radar->Scan() << endl;
+    }
+
+    void Drive() {
+        cout << "Driving using strategy: " << strategy->Name() << endl;
+        strategy->Drive(engine);
+    }
+
+    void InteractWithWorld(WorldObject& obj) {
+        cout << "Environment: " << obj.Interact() << endl;
+        if (dynamic_cast<Obstacle*>(&obj)) {
+            engine.Brake(10);
+        }
+    }
 };

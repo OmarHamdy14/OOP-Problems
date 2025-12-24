@@ -1,4 +1,3 @@
-#include "P58.h"
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -42,7 +41,7 @@ public:
         for (int i = 1; i <= seatCount; ++i)
             seats.emplace_back("S" + to_string(i));
     }
-    string GetModel() const { return name; }
+    string GetName() const { return name; }
     vector<Seat>& GetSeats() { return seats; }
 };
 
@@ -71,5 +70,60 @@ public:
     Reservation(const string& pname, Seat* s) : passengerName(pname), seat(s) {}
     void PrintTicket() {
         cout << "Ticket for " << passengerName << "\nSeat: " << seat->GetSeatNumber() << "\n";
+    }
+};
+
+class ISchedulingStrategy {
+public:
+    virtual void ScheduleFlight(Plane& plane, Pilot& pilot, Route& route) = 0;
+};
+
+class SimpleSchedule : public ISchedulingStrategy {
+public:
+    void ScheduleFlight(Plane& plane, Pilot& pilot, Route& route) override {
+        cout << "Scheduled " << plane.GetName() << " piloted by "
+            << pilot.GetName() << " on route " << route.GetRoute() << endl;
+    }
+};
+
+class PrioritySchedule : public ISchedulingStrategy {
+public:
+    void ScheduleFlight(Plane& plane, Pilot& pilot, Route& route) override {
+        cout << "Priority Schedule: " << plane.GetName() << " with "
+            << pilot.GetName() << " on " << route.GetRoute() << endl;
+    }
+};
+
+
+class Airline {
+    vector<Plane> planes;
+    vector<Pilot> pilots;
+    vector<Route> routes;
+    unique_ptr<ISchedulingStrategy> scheduler;
+public:
+    Airline(unique_ptr<ISchedulingStrategy> sched) : scheduler(move(sched)) {}
+
+    void AddPlane(const Plane& p) { planes.push_back(p); }
+    void AddPilot(const Pilot& p) { pilots.push_back(p); }
+    void AddRoute(const Route& r) { routes.push_back(r); }
+
+    void ScheduleFlight(int planeIdx, int pilotIdx, int routeIdx) {
+        if (planeIdx >= 0 && planeIdx < planes.size() &&
+            pilotIdx >= 0 && pilotIdx < pilots.size() &&
+            routeIdx >= 0 && routeIdx < routes.size())
+        {
+            scheduler->ScheduleFlight(planes[planeIdx], pilots[pilotIdx], routes[routeIdx]);
+        }
+    }
+
+    Reservation MakeReservation(const string& passenger, int planeIdx, int seatIdx) {
+        if (planeIdx < 0 || planeIdx >= planes.size())
+            throw runtime_error("Invalid plane");
+        auto& seats = planes[planeIdx].GetSeats();
+        if (seatIdx < 0 || seatIdx >= seats.size())
+            throw runtime_error("Invalid seat");
+        if (!seats[seatIdx].Reserve())
+            throw runtime_error("Seat already reserved");
+        return Reservation(passenger, &seats[seatIdx]);
     }
 };

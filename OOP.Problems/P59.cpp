@@ -1,4 +1,3 @@
-#include "P59.h"
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -74,5 +73,41 @@ public:
             << (state == LightState::GREEN ? "GREEN" :
                 state == LightState::YELLOW ? "YELLOW" : "RED")
             << endl;
+    }
+};
+
+
+class Vehicle {
+public:
+    virtual bool IsEmergency() const { return false; }
+};
+
+class EmergencyVehicle : public Vehicle {
+public:
+    bool IsEmergency() const override { return true; }
+};
+
+
+class TrafficAI : public TrafficObserver {
+    TrafficLight& light;
+public:
+    TrafficAI(TrafficLight& l) : light(l) {}
+
+    void OnTrafficUpdate(const string& data) override {
+        cout << "AI received: " << data << endl;
+
+        if (data.find("Heavy") != string::npos) {
+            light.SetState(LightState::GREEN);
+        }
+        else {
+            light.SetState(LightState::YELLOW);
+        }
+    }
+
+    void HandleVehicle(const Vehicle& v) {
+        if (v.IsEmergency()) {
+            cout << "Emergency vehicle !\n";
+            light.SetState(LightState::GREEN);
+        }
     }
 };

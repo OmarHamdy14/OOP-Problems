@@ -1,5 +1,4 @@
-﻿#include "P60.h"
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <algorithm>
 #include <vector>
@@ -72,4 +71,44 @@ public:
     }
 
     double GetPrice() const override { return stopPrice; }
+};
+
+class TradingStrategy {
+public:
+    virtual shared_ptr<Order> OnMarketEvent(const MarketEvent& e) = 0;
+};
+
+class MomentumStrategy : public TradingStrategy {
+public:
+    shared_ptr<Order> OnMarketEvent(const MarketEvent& e) override {
+        if (e.price > 100)
+            return make_shared<MarketOrder>(OrderType::BUY, 10);
+        return nullptr;
+    }
+};
+
+class MeanReversionStrategy : public TradingStrategy {
+public:
+    shared_ptr<Order> OnMarketEvent(const MarketEvent& e) override {
+        if (e.price > 120)
+            return make_shared<LimitOrder>(OrderType::SELL, 5, e.price);
+        return nullptr;
+    }
+};
+
+
+class Trader {
+    string name;
+    unique_ptr<TradingStrategy> strategy;
+public:
+    Trader(const string& n, unique_ptr<TradingStrategy> s)
+        : name(n), strategy(move(s)) {
+    }
+
+    shared_ptr<Order> React(const MarketEvent& e) {
+        auto order = strategy->OnMarketEvent(e);
+        if (order)
+            cout << name << " placed an order\n";
+        return order;
+    }
 };

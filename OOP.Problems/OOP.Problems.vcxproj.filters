@@ -197,5 +197,11 @@
     <ClCompile Include="P61.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="P62.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="P62.h" />
   </ItemGroup>
 </Project>

@@ -67,3 +67,61 @@ public:
     string Name() const override { return base->Name() + " + Sugar"; }
     double Price() const override { return base->Price() + 0.2; }
 };
+
+class Order {
+    vector<unique_ptr<Drink>> drinks;
+public:
+    void AddDrink(unique_ptr<Drink> d) {
+        drinks.push_back(move(d));
+    }
+
+    double TotalPrice() const {
+        double total = 0;
+        for (auto& d : drinks)
+            total += d->Price();
+        return total;
+    }
+
+    void Print() const {
+        cout << "\nOrder details:\n";
+        for (auto& d : drinks)
+            cout << "- " << d->Name() << " : $" << d->Price() << endl;
+        cout << "Total: $" << TotalPrice() << endl;
+    }
+};
+
+class Customer {
+    string name;
+public:
+    Customer(const string& n) : name(n) {}
+    string GetName() const { return name; }
+};
+
+
+class CoffeeShop {
+public:
+    Order CreateOrder(const Customer& customer) {
+        cout << "\nCreating order for " << customer.GetName() << endl;
+        return Order();
+    }
+};
+
+int main() {
+    CoffeeShop shop;
+    Customer omar("Omar");
+
+    Order order = shop.CreateOrder(omar);
+
+    order.AddDrink(
+        make_unique<Milk>(
+            make_unique<Sugar>(
+                make_unique<Coffee>()
+            )
+        )
+    );
+
+    order.AddDrink(make_unique<Tea>());
+    order.AddDrink(make_unique<Juice>());
+
+    order.Print();
+}

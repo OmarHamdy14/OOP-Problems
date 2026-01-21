@@ -201,7 +201,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="P62.h" />
-  </ItemGroup>
 </Project>

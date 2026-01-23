@@ -204,7 +204,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="P63.h" />
-  </ItemGroup>
 </Project>

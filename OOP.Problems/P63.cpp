@@ -63,3 +63,54 @@ public:
     bool UsesInternet() const override { return true; }
     int BatteryDrain() const override { return 20; }
 };
+
+class Phone {
+    vector<unique_ptr<App>> apps;
+    int battery = 100;
+
+public:
+    void InstallApp(unique_ptr<App> app) {
+        apps.push_back(move(app));
+    }
+
+    void OpenApp(int index) {
+        if (index >= 0 && index < apps.size()) {
+            apps[index]->Open();
+            ConsumeBattery(apps[index]->BatteryDrain());
+        }
+    }
+
+    void CloseApp(int index) {
+        if (index >= 0 && index < apps.size()) {
+            apps[index]->Close();
+        }
+    }
+
+    void ConsumeBattery(int amount) {
+        battery -= amount;
+        if (battery < 0) battery = 0;
+    }
+
+    void Status() const {
+        cout << "\nBattery: " << battery << "%\n";
+        for (auto& a : apps) {
+            cout << "- " << a->Name() << " | Open: " << (a->IsOpen() ? "Yes" : "No") << " | Internet: " << (a->UsesInternet() ? "Yes" : "No")<< endl;
+        }
+    }
+};
+
+int main() {
+    Phone phone;
+
+    phone.InstallApp(make_unique<SocialMediaApp>());
+    phone.InstallApp(make_unique<MusicApp>());
+    phone.InstallApp(make_unique<NavigationApp>());
+
+    phone.OpenApp(0);
+    phone.OpenApp(2);
+    phone.CloseApp(0);
+
+    phone.Status();
+
+    return 0;
+}

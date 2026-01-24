@@ -203,5 +203,11 @@
     <ClCompile Include="P63.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="P64.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="P64.h" />
   </ItemGroup>
 </Project>

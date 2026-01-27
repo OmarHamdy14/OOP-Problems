@@ -72,3 +72,59 @@ public:
 
     string GetName() const { return name; }
 };
+
+class Member {
+    string name;
+    Plan& plan;            
+    vector<Workout> workouts;      
+    int attendanceCount = 0;
+
+public:
+    Member(string n, Plan& p) : name(n), plan(p) {}
+
+    void AttendGym() {
+        attendanceCount++;
+        cout << name << "Total visits: " << attendanceCount << endl;
+    }
+
+    void AddWorkout(const Workout& w) {
+        workouts.push_back(w);
+    }
+
+    void ShowInfo() const {
+        cout << "\nMember: " << name << endl;
+        cout << "Plan: " << plan.GetName() << " ($" << plan.GetPrice() << ")\n";
+
+        cout << "Pool Access: " << (plan.HasPoolAccess() ? "Yes" : "No") << endl;
+
+        cout << "Trainer Access: " << (plan.HasTrainerAccess() ? "Yes" : "No") << endl;
+
+        cout << "Attendance Count: " << attendanceCount << endl;
+
+        cout << "Workouts:\n";
+        for (auto& w : workouts)
+            cout << "- " << w.GetDescription() << endl;
+    }
+};
+
+
+int main() {
+    BasicPlan basic;
+    PremiumPlan premium;
+
+    Trainer trainer("Coach Ali");
+
+    Member m1("Omar", basic);
+    Member m2("mo", premium);
+
+    m1.AttendGym();
+    m2.AttendGym();
+    m2.AttendGym();
+
+    m2.AddWorkout(trainer.AssignWorkout());
+
+    m1.ShowInfo();
+    m2.ShowInfo();
+
+    return 0;
+}

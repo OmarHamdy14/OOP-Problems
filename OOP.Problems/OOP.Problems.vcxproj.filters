@@ -210,7 +210,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="P65.h" />
-  </ItemGroup>
 </Project>

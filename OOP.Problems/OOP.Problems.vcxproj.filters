@@ -209,5 +209,11 @@
     <ClCompile Include="P65.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="P66.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="P66.h" />
   </ItemGroup>
 </Project>

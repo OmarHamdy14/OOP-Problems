@@ -213,7 +213,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="P66.h" />
-  </ItemGroup>
 </Project>

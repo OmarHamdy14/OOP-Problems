@@ -80,3 +80,48 @@ public:
         return muted.count(user);
     }
 };
+
+class Chat {
+    vector<Message*> messages;
+
+public:
+    ~Chat() {
+        for (auto m : messages)
+            delete m;
+    }
+
+    void SendMessage(User& from, User& to, Message* msg) {
+        if (to.IsBlocked(from.GetName())) {
+            cout << from.GetName() << " is blocked by " << to.GetName() << endl;
+            delete msg;
+            return;
+        }
+        messages.push_back(msg);
+    }
+
+    void ShowHistory(const User& viewer) const {
+        for (auto m : messages) {
+            if (!viewer.IsMuted(m->GetSender()))
+                m->Display();
+        }
+    }
+};
+
+
+int main() {
+    User oo("oo");
+    User aa("aa");
+
+    Chat chat;
+
+    chat.SendMessage(aa, oo, new TextMessage("aa", "Hello Bob"));
+    chat.SendMessage(oo, aa, new FileMessage("oo", "photo.png"));
+
+    aa.Mute("oo");
+
+    cout << "\nChat history for aa:\n";
+    chat.ShowHistory(aa);
+
+    oo.Block("aa");
+    chat.SendMessage(aa, oo, new TextMessage("aa", "Are you here?"));
+}
